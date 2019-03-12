@@ -9,6 +9,7 @@ verify_ssl = true
 markdown = "*"
 tzlocal = "*"
 pelican = "*"
+invoke = "*"
 
 [requires]
 python_version = "3.7"
