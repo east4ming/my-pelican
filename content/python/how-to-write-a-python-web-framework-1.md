@@ -7,6 +7,7 @@ Slug: write-python-framework-part-one
 Author: 东风微鸣
 Summary: 编写自己的Python Web框架, 实现: WSGI兼容; 请求处理程序; 路由：简单和参数化
 
+![]({static}/images/web-frameworks.jpg)
 # 如何编写Python Web框架（一）
 
 > 译文:
@@ -466,4 +467,4 @@ def greeting(request, response, name):
 
 Fight on!
 
-> *在[这里]({filename}python/how-to-write-a-python-web-framework-1.md)查看第二部分*
+> *在[这里]({filename}how-to-write-a-python-web-framework-1.md)查看第二部分*

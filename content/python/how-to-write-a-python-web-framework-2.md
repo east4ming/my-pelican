@@ -7,6 +7,7 @@ Slug: write-python-framework-part-two
 Author: 东风微鸣
 Summary: 编写自己的Python Web框架, 实现: 检查重复的路径; 基于类的处理程序; 单元测试
 
+![]({static}/images/Python-Web-Development-Tutorials.jpg)
 # 如何编写Python Web框架（二）
 
 > 本文为译文
@@ -17,13 +18,13 @@ Summary: 编写自己的Python Web框架, 实现: 检查重复的路径; 基于�
 >
 > Github仓库: [alcazar](https://github.com/rahmonov/alcazar)
 
-在[第一部分中]({filename}python/how-to-write-a-python-web-framework-1.md)，我们开始编写自己的Python框架并实现以下功能：
+在[第一部分中]({filename}how-to-write-a-python-web-framework-1.md)，我们开始编写自己的Python框架并实现以下功能：
 
 - WSGI兼容
 - 请求处理程序
 - 路由：简单和参数化
 
-请务必在此之前阅读系列的[第一部分]({filename}python/how-to-write-a-python-web-framework-1.md)。
+请务必在此之前阅读系列的[第一部分]({filename}how-to-write-a-python-web-framework-1.md)。
 
 这部分同样令人兴奋，我们将在其中添加以下功能：
 

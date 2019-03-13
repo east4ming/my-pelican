@@ -7,6 +7,7 @@ Slug: write-python-framework-part-three
 Author: 东风微鸣
 Summary: 编写自己的Python Web框架, 实现: 测试客户端; 添加路径的替代方式（如类似Django的实现）; 支持模板
 
+![]({static}/images/Front-end-Web-Development-Tutorials.jpg)
 # 如何编写Python Web框架（三）
 
 > 本文为译文
@@ -34,7 +35,7 @@ Summary: 编写自己的Python Web框架, 实现: 测试客户端; 添加路径�
 
 ## 测试客户端
 
-在第[2部分中]({filename}python/how-to-write-a-python-web-framework-2.md)，我们编写了几个单元测试。但是，当我们需要向处理程序发送HTTP请求时，我们停止了，因为我们没有可以执行此操作的测试客户端。我们先添加一个。
+在第[2部分中]({filename}how-to-write-a-python-web-framework-2.md)，我们编写了几个单元测试。但是，当我们需要向处理程序发送HTTP请求时，我们停止了，因为我们没有可以执行此操作的测试客户端。我们先添加一个。
 
 到目前为止，在Python中发送HTTP请求最流行的方式是[Kenneth Reitz](https://twitter.com/kennethreitz)的[`Requests`](https://github.com/kennethreitz/requests)库。但是，为了能够在单元测试中使用它，我们应该始终启动并运行我们的应用程序（即在运行测试之前启动gunicorn）。原因是[`Requests`只附带一个Transport Adaptter: HTTPAdapter](http://docs.python-requests.org/en/master/user/advanced/#transport-adapters)。这违背了单元测试的目的。单元测试应该是自我维持的。对我们来说幸运的是，[Sean Brant](https://github.com/seanbrant)编写了一个[WSGI Transport Adapter，用于](https://github.com/seanbrant/requests-wsgi-adapter)创建测试客户端。让我们先编写代码再进行讨论。
 
@@ -378,8 +379,8 @@ def template_handler(req, resp):
 
 请务必在评论中告诉我们应该在本系列中实现的其他功能。对于下一部分，我们肯定会添加对静态文件的支持，但我不确定我们应该添加哪些其他功能。
 
-[*在这里看看第一部分*]({filename}python/how-to-write-a-python-web-framework-1.md)
-[*在这里看看第二部分*]({filename}python/how-to-write-a-python-web-framework-2.md)
+[*在这里看看第一部分*]({filename}how-to-write-a-python-web-framework-1.md)
+[*在这里看看第二部分*]({filename}how-to-write-a-python-web-framework-2.md)
 
 > 稍微提醒一下，这个系列是基于我为学习目的而编写的[Alcazar框架](https://github.com/rahmonov/alcazar)。如果你喜欢这个系列，[请在这儿](https://github.com/rahmonov/alcazar)查看博客中的内容，一定要通过star该repo来表达你的喜爱。
 
