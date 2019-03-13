@@ -1,3 +1,12 @@
+Title: 如何编写Python Web框架（一）
+Date: 2019-03-01 14:44
+Status: published
+Category: python
+Tags: python, web框架
+Slug: write-python-framework-part-one
+Author: 东风微鸣
+Summary: 编写自己的Python Web框架, 实现: WSGI兼容; 请求处理程序; 路由：简单和参数化
+
 # 如何编写Python Web框架（一）
 
 > 译文:
