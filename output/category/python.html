@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
+<head>
+  <meta charset="utf-8"/>
+  <title>东风微鸣的博客 - python</title>
+  <link href="/theme/css/main.css" rel="stylesheet"/>
+</head>
+
+<body class="home" id="index">
+<header class="body" id="banner">
+  <h1><a href="/">东风微鸣的博客 </a></h1>
+  <nav>
+    <ul>
+      <li class="active"><a href="/category/python.html">python</a></li>
+    </ul>
+  </nav>
+</header><!-- /#banner -->
+
+<aside class="body" id="featured">
+  <article>
+    <h1 class="entry-title"><a href="/write-python-framework-part-three.html">如何编写Python
+      Web框架（三）</a></h1>
+    <footer class="post-info">
+      <abbr class="published" title="2019-03-06T11:03:00+08:00">
+        Published: 周三 06 三月 2019
+      </abbr>
+
+      <address class="vcard author">
+        By <a class="url fn" href="/author/dong-feng-wei-ming.html">东风微鸣</a>
+      </address>
+      <p>In <a href="/category/python.html">python</a>.</p>
+      <p>tags: <a href="/tag/python.html">python</a> <a
+              href="/tag/webkuang-jia.html">web框架</a></p>
+    </footer><!-- /.post-info --><p><img alt=""
+                                         src="/images/Front-end-Web-Development-Tutorials.jpg">
+  </p>
+    <h1>如何编写Python Web框架（三）</h1>
+    <blockquote>
+      <p>本文为译文</p>
+      <p>原文链接: <a
+              href="http://rahmonov.me/posts/write-python-framework-part-three/">How
+        to write a Python web framework. Part III.</a></p>
+      <p>作者: Jahongir Rahmonov</p>
+      <p>Github仓库: <a href="https://github.com/rahmonov/alcazar">alcazar</a></p>
+    </blockquote>
+    <p>在本系列之前的博客文章中，我们开始编写自己的Python框架并实现以下功能：</p>
+    <ul>
+      <li>WSGI兼容</li>
+      <li>请求处理程序</li>
+      <li>路由：简单和参数化</li>
+      <li>检查重复的路径</li>
+      <li>基于类的处理程序</li>
+      <li>单元测试</li>
+    </ul>
+    <p>在这部分中，我们将为列表添加一些很棒的功能：</p>
+    <ul>
+      <li>测试客户端</li>
+      <li>添加路径的替代方式（如类似Django的实现）</li>
+      <li>支持模板</li>
+    </ul>
+    <h2>测试客户端</h2>
+    <p>在第<a href="/write-python-framework-part-two.html">2部分中</a>，我们编写了几个单元测试。但是，当我们需要向处理程序发送HTTP请求时，我们停止了，因为我们没有可以执行此操作的测试客户端。我们先添加一个。
+    </p>
+    <p>到目前为止，在Python中发送HTTP请求最流行的方式是<a href="https://twitter.com/kennethreitz">Kenneth
+      Reitz</a>的<a href="https://github.com/kennethreitz/requests"><code>Requests</code></a>库。但是，为了能够在单元测试中使用它，我们应该始终启动并运行我们的应用程序（即在运行测试之前启动gunicorn）。原因是<a
+            href="http://docs.python-requests.org/en/master/user/advanced/#transport-adapters"><code>Requests</code>只附带一个Transport
+      Adaptter: HTTPAdapter</a>。这违背了单元测试的目的。单元测试应该是自我维持的。对我们来说幸运的是，<a
+            href="https://github.com/seanbrant">Sean Brant</a>编写了一个<a
+            href="https://github.com/seanbrant/requests-wsgi-adapter">WSGI
+      Transport Adapter，用于</a>创建测试客户端。让我们先编写代码再进行讨论。</p>
+    <blockquote>
+      <p>:exclamation: 译者注:</p>
+      <p>先安装2个库:</p>
+      <p><code>shell
+        pip install requests
+        pip install requests-wsgi-adapter</code></p>
+    </blockquote>
+    <p>将以下方法添加到<code>api.py</code>主类<code>API</code>中：</p>
+    <div class="highlight"><pre><span></span><span class="c1"># api.py</span>
+<span class="o">...</span>
+<span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span
+              class="n">Session</span> <span class="k">as</span> <span
+              class="n">RequestsSession</span>
+<span class="kn">from</span> <span class="nn">wsgiadapter</span> <span
+              class="kn">import</span> <span class="n">WSGIAdapter</span> <span
+              class="k">as</span> <span class="n">RequestsWSGIAdapter</span>
+
+
+<span class="k">class</span> <span class="nc">API</span><span class="p">:</span>
+    <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">test_session</span><span
+              class="p">(</span><span class="bp">self</span><span
+              class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span
+              class="s2">&quot;http://testserver&quot;</span><span
+              class="p">):</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="n">RequestsSession</span><span
+              class="p">()</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">mount</span><span
+              class="p">(</span><span class="n">prefix</span><span
+              class="o">=</span><span class="n">base_url</span><span
+              class="p">,</span> <span class="n">adapter</span><span
+              class="o">=</span><span class="n">RequestsWSGIAdapter</span><span
+              class="p">(</span><span class="bp">self</span><span
+              class="p">))</span>
+        <span class="k">return</span> <span class="n">session</span>
+
+    <span class="o">...</span>
+</pre>
+    </div>
+
+
+    <p>
+      如此<a href="http://docs.python-requests.org/en/master/user/advanced/#transport-adapters">处所述</a>，要使用Requests
+      WSGI Adapter，我们需要将其mount到Session对象。这样，使用<code>test_session</code>,其URL以给定前缀开头的任何请求都将使用给定的RequestsWSGIAdapter。太好了，现在我们可以用<code>test_session</code>来创建一个测试客户端。创建一个<code>conftest.py</code>文件并将<code>api</code>
+      fixture 移动到此文件，使其如下所示：</p>
+    <div class="highlight"><pre><span></span><span
+            class="c1"># conftest.py</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">from</span> <span class="nn">api</span> <span
+              class="kn">import</span> <span class="n">API</span>
+
+
+<span class="nd">@pytest.fixture</span>
+<span class="k">def</span> <span class="nf">api</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">API</span><span
+              class="p">()</span>
+</pre>
+    </div>
+
+
+    <p>此文件的<code>pytest</code>默认情况下会查找fixture 。现在，让我们在这里创建测试客户端fixture ：</p>
+    <div class="highlight"><pre><span></span><span
+            class="c1"># conftest.py</span>
+<span class="o">...</span>
+
+<span class="nd">@pytest.fixture</span>
+<span class="k">def</span> <span class="nf">client</span><span
+              class="p">(</span><span class="n">api</span><span
+              class="p">):</span>
+    <span class="k">return</span> <span class="n">api</span><span
+              class="o">.</span><span class="n">test_session</span><span
+              class="p">()</span>
+</pre>
+    </div>
+
+
+    <p>我们的<code>client</code>需要<code>api</code> fixture 并返回我们之前编写的内容<code>test_session</code>。现在我们可以在单元测试中使用这个<code>client</code>
+      fixture
+      。让我们直接进入<code>test_bumbo.py</code>文件并编写一个单元测试，测试是否<code>client</code>可以发送请求：
+    </p>
+    <div class="highlight"><pre><span></span><span
+            class="c1"># test_bumbo.py</span>
+<span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">test_bumbo_test_client_can_send_requests</span><span
+              class="p">(</span><span class="n">api</span><span
+              class="p">,</span> <span class="n">client</span><span
+              class="p">):</span>
+    <span class="n">RESPONSE_TEXT</span> <span class="o">=</span> <span
+              class="s2">&quot;THIS IS COOL&quot;</span>
+
+    <span class="nd">@api.route</span><span class="p">(</span><span class="s2">&quot;/hey&quot;</span><span
+              class="p">)</span>
+    <span class="k">def</span> <span class="nf">cool</span><span
+              class="p">(</span><span class="n">req</span><span
+              class="p">,</span> <span class="n">resp</span><span
+              class="p">):</span>
+        <span class="n">resp</span><span class="o">.</span><span
+              class="n">text</span> <span class="o">=</span> <span class="n">RESPONSE_TEXT</span>
+
+    <span class="k">assert</span> <span class="n">client</span><span
+              class="o">.</span><span class="n">get</span><span
+              class="p">(</span><span class="s2">&quot;http://testserver/hey&quot;</span><span
+              class="p">)</span><span class="o">.</span><span
+              class="n">text</span> <span class="o">==</span> <span class="n">RESPONSE_TEXT</span>
+</pre>
+    </div>
+
+
+    <p>运行单元测试<code>pytest test_bumbo.py</code>并观察。我们看到所有的测试都通过了。让我们为最重要的部分添加几个单元测试：
+    </p>
+    <div class="highlight"><pre><span></span><span
+            class="c1"># test_bumbo.py</span>
+<span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">test_parameterized_route</span><span
+              class="p">(</span><span class="n">api</span><span
+              class="p">,</span> <span class="n">client</span><span
+              class="p">):</span>
+    <span class="nd">@api.route</span><span class="p">(</span><span class="s2">&quot;/{name}&quot;</span><span
+              class="p">)</span>
+    <span class="k">def</span> <span class="nf">hello</span><span
+              class="p">(</span><span class="n">req</span><span
+              class="p">,</span> <span class="n">resp</span><span
+              class="p">,</span> <span class="n">name</span><span
+              class="p">):</span>
+        <span class="n">resp</span><span class="o">.</span><span
+              class="n">text</span> <span class="o">=</span> <span
+              class="n">f</span><span class="s2">&quot;hey {name}&quot;</span>
+
+    <span class="k">assert</span> <span class="n">client</span><span
+              class="o">.</span><span class="n">get</span><span
+              class="p">(</span><span class="s2">&quot;http://testserver/matthew&quot;</span><span
+              class="p">)</span><span class="o">.</span><span
+              class="n">text</span> <span class="o">==</span> <span class="s2">&quot;hey matthew&quot;</span>
+    <span class="k">assert</span> <span class="n">client</span><span
+              class="o">.</span><span class="n">get</span><span
+              class="p">(</span><span class="s2">&quot;http://testserver/ashley&quot;</span><span
+              class="p">)</span><span class="o">.</span><span
+              class="n">text</span> <span class="o">==</span> <span class="s2">&quot;hey ashley&quot;</span>
+</pre>
+    </div>
+
+
+    <p>这个测试我们在url中发送的参数是否正常工作。</p>
+    <div class="highlight"><pre><span></span><span
+            class="c1"># test_bumbo.py</span>
+<span class="o">...</span>
+
+<span class="k">def</span> <span
+              class="nf">test_default_404_response</span><span
+              class="p">(</span><span class="n">client</span><span
+              class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span
+              class="o">.</span><span class="n">get</span><span
+              class="p">(</span><span class="s2">&quot;http://testserver/doesnotexist&quot;</span><span
+              class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">response</span><span
+              class="o">.</span><span class="n">status_code</span> <span
+              class="o">==</span> <span class="mi">404</span>
+    <span class="k">assert</span> <span class="n">response</span><span
+              class="o">.</span><span class="n">text</span> <span
+              class="o">==</span> <span class="s2">&quot;Not found.&quot;</span>
+</pre>
+    </div>
+
+
+    <p>这个测试如果请求被发送到不存在的路由，则返回404（未找到）响应。</p>
+    <p>剩下的我会留给你。如果您需要任何帮助，请尝试编写更多测试并在评论中告诉我。以下是单元测试的一些想法：</p>
+    <ul>
+      <li>测试基于类的处理程序GET请求是否正常运行</li>
+      <li>测试基于类的处理程序POST请求是否正常运行</li>
+      <li>测试如果使用无效的请求方法，基于类的处理程序返回响应<code>Method Not Allowed.</code></li>
+      <li>测试是否正确返回状态码</li>
+    </ul>
+    <h2>添加路径的替代方式</h2>
+    <p>现在，这是添加路径的方式：</p>
+    <div class="highlight"><pre><span></span><span
+            class="nd">@api.route</span><span class="p">(</span><span
+            class="s2">&quot;/home&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">handler</span><span
+              class="p">(</span><span class="n">req</span><span
+              class="p">,</span> <span class="n">resp</span><span
+              class="p">):</span>
+    <span class="n">resp</span><span class="o">.</span><span
+              class="n">text</span> <span class="o">=</span> <span class="s2">&quot;YOLO&quot;</span>
+</pre>
+    </div>
+
+
+    <p>也就是说，路由被添加为装饰器，就像在Flask中一样。有些人可能喜欢Django注册网址的方式。所以，让我们给他们这样添加路径的选择：</p>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span
+            class="nf">handler</span><span class="p">(</span><span
+            class="n">req</span><span class="p">,</span> <span
+            class="n">resp</span><span class="p">):</span>
+    <span class="n">resp</span><span class="o">.</span><span
+              class="n">text</span> <span class="o">=</span> <span class="s2">&quot;YOLO&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">handler2</span><span
+              class="p">(</span><span class="n">req</span><span
+              class="p">,</span> <span class="n">resp</span><span
+              class="p">):</span>
+    <span class="n">resp</span><span class="o">.</span><span
+              class="n">text</span> <span class="o">=</span> <span class="s2">&quot;YOLO2&quot;</span>
+
+<span class="n">api</span><span class="o">.</span><span
+              class="n">add_route</span><span class="p">(</span><span
+              class="s2">&quot;/home&quot;</span><span class="p">,</span> <span
+              class="n">handler</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span
+              class="n">add_route</span><span class="p">(</span><span
+              class="s2">&quot;/about&quot;</span><span class="p">,</span> <span
+              class="n">handler2</span><span class="p">)</span>
+</pre>
+    </div>
+
+
+    <p><code>add_route</code>方法应该做两件事。检查路径是否已经注册，如果没有，则注册：</p>
+    <div class="highlight"><pre><span></span><span class="c1"># api.py</span>
+
+<span class="k">class</span> <span class="nc">API</span><span class="p">:</span>
+    <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">add_route</span><span class="p">(</span><span
+              class="bp">self</span><span class="p">,</span> <span class="n">path</span><span
+              class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">path</span> <span
+              class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span
+              class="o">.</span><span class="n">routes</span><span
+              class="p">,</span> <span class="s2">&quot;Such route already exists.&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span
+              class="p">[</span><span class="n">path</span><span
+              class="p">]</span> <span class="o">=</span> <span class="n">handler</span>
+</pre>
+    </div>
+
+
+    <p>
+      很简单。这段代码看起来很熟悉吗？这是因为我们已经在<code>route</code>装饰器中编写了这样的代码。我们现在可以遵循DRY原则并在<code>route</code>装饰器中使用<code>add_route</code>方法：
+    </p>
+    <div class="highlight"><pre><span></span><span class="c1"># api.py</span>
+
+
+<span class="k">class</span> <span class="nc">API</span><span class="p">:</span>
+    <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">add_route</span><span class="p">(</span><span
+              class="bp">self</span><span class="p">,</span> <span class="n">path</span><span
+              class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">path</span> <span
+              class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span
+              class="o">.</span><span class="n">routes</span><span
+              class="p">,</span> <span class="s2">&quot;Such route already exists.&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span
+              class="p">[</span><span class="n">path</span><span
+              class="p">]</span> <span class="o">=</span> <span class="n">handler</span>
+
+    <span class="k">def</span> <span class="nf">route</span><span
+              class="p">(</span><span class="bp">self</span><span
+              class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span
+              class="p">(</span><span class="n">handler</span><span
+              class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_route</span><span
+              class="p">(</span><span class="n">pattern</span><span
+              class="p">,</span> <span class="n">handler</span><span
+              class="p">)</span>
+            <span class="k">return</span> <span class="n">handler</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+</pre>
+    </div>
+
+
+    <p>让我们添加一个单元测试来检查它是否正常工作：</p>
+    <div class="highlight"><pre><span></span><span
+            class="c1"># test_bumbo.py</span>
+
+<span class="k">def</span> <span class="nf">test_alternative_route</span><span
+              class="p">(</span><span class="n">api</span><span
+              class="p">,</span> <span class="n">client</span><span
+              class="p">):</span>
+    <span class="n">response_text</span> <span class="o">=</span> <span
+              class="s2">&quot;Alternative way to add a route&quot;</span>
+
+    <span class="k">def</span> <span class="nf">home</span><span
+              class="p">(</span><span class="n">req</span><span
+              class="p">,</span> <span class="n">resp</span><span
+              class="p">):</span>
+        <span class="n">resp</span><span class="o">.</span><span
+              class="n">text</span> <span class="o">=</span> <span class="n">response_text</span>
+
+    <span class="n">api</span><span class="o">.</span><span
+              class="n">add_route</span><span class="p">(</span><span
+              class="s2">&quot;/alternative&quot;</span><span class="p">,</span> <span
+              class="n">home</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">client</span><span
+              class="o">.</span><span class="n">get</span><span
+              class="p">(</span><span class="s2">&quot;http://testserver/alternative&quot;</span><span
+              class="p">)</span><span class="o">.</span><span
+              class="n">text</span> <span class="o">==</span> <span class="n">response_text</span>
+</pre>
+    </div>
+
+
+    <p>运行您的测试，您将看到所有测试都通过。</p>
+    <h2>模板支持</h2>
+    <p>
+      当我实现新的东西时，我喜欢做一些叫做README驱动的开发。这是一种技术，您可以在实施之前记下API是什么样子。让我们来实现。假设我们要在我们的处理程序中使用此模板：</p>
+    <div class="highlight"><pre><span></span><span class="p">&lt;</span><span
+            class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{{ title }}<span
+              class="p">&lt;/</span><span class="nt">title</span><span
+              class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">body</span><span
+              class="p">&gt;</span>
+        The name of the framework is {{ name }}
+    <span class="p">&lt;/</span><span class="nt">body</span><span
+              class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">html</span><span
+              class="p">&gt;</span>
+</pre>
+    </div>
+
+
+    <p><code>{{ title }}</code>和<code>{{ name }}</code>是从处理程序发送的变量，这是处理程序的样子：
+    </p>
+    <div class="highlight"><pre><span></span><span class="n">api</span> <span
+            class="o">=</span> <span class="n">API</span><span
+            class="p">(</span><span class="n">templates_dir</span><span
+            class="o">=</span><span class="s2">&quot;templates&quot;</span><span
+            class="p">)</span>
+
+<span class="nd">@api.route</span><span class="p">(</span><span class="s2">&quot;/template&quot;</span><span
+              class="p">)</span>
+<span class="k">def</span> <span class="nf">handler</span><span
+              class="p">(</span><span class="n">req</span><span
+              class="p">,</span> <span class="n">resp</span><span
+              class="p">):</span>
+    <span class="n">resp</span><span class="o">.</span><span
+              class="n">body</span> <span class="o">=</span> <span
+              class="n">api</span><span class="o">.</span><span class="n">template</span><span
+              class="p">(</span><span
+              class="s2">&quot;index.html&quot;</span><span
+              class="p">,</span> <span class="n">context</span><span
+              class="o">=</span><span class="p">{</span><span class="s2">&quot;title&quot;</span><span
+              class="p">:</span> <span
+              class="s2">&quot;Awesome Framework&quot;</span><span
+              class="p">,</span> <span class="s2">&quot;name&quot;</span><span
+              class="p">:</span> <span
+              class="s2">&quot;Alcazar&quot;</span><span class="p">})</span>
+</pre>
+    </div>
+
+
+    <p>我希望它尽可能简单，所以我只需要一个方法，将模板名和上下文作为参数，并用给定的参数呈现该模板。另外，我们希望模板目录可以像上面一样配置。</p>
+    <p>通过设计API，我们现在可以实现它。</p>
+    <p>对于模板支持，我认为<a href="http://jinja.pocoo.org/docs/2.10/">Jinja2</a>是最佳选择。它是一个现代的，设计师友好的Python模板语言，模仿Django的模板。所以，如果你知道Django,
+      那么使用Jinja2应该感觉一样。</p>
+    <p><code>Jinja2</code>使用称为模板<code>Environment</code>的中心对象。我们将在应用程序初始化和借助此Environment
+      加载模板的基础上配置此环境。以下是如何创建和配置一个：</p>
+    <div class="highlight"><pre><span></span><span class="kn">from</span> <span
+            class="nn">jinja2</span> <span class="kn">import</span> <span
+            class="n">Environment</span><span class="p">,</span> <span
+            class="n">FileSystemLoader</span>
+
+<span class="n">templates_env</span> <span class="o">=</span> <span class="n">Environment</span><span
+              class="p">(</span><span class="n">loader</span><span
+              class="o">=</span><span class="n">FileSystemLoader</span><span
+              class="p">(</span><span class="n">os</span><span
+              class="o">.</span><span class="n">path</span><span
+              class="o">.</span><span class="n">abspath</span><span
+              class="p">(</span><span
+              class="s2">&quot;templates&quot;</span><span class="p">)))</span>
+</pre>
+    </div>
+
+
+    <p><code>FileSystemLoader</code>从文件系统加载模板。此加载程序可以在文件系统上的文件夹中查找模板，并且是加载它们的首选方法。它将模板目录的路径作为参数。现在我们可以这样使用<code>templates_env</code>：
+    </p>
+    <div class="highlight"><pre><span></span><span
+            class="n">templates_env</span><span class="o">.</span><span
+            class="n">get_template</span><span class="p">(</span><span
+            class="s2">&quot;index.html&quot;</span><span
+            class="p">)</span><span class="o">.</span><span
+            class="n">render</span><span class="p">({</span><span class="s2">&quot;title&quot;</span><span
+            class="p">:</span> <span
+            class="s2">&quot;Awesome Framework&quot;</span><span
+            class="p">,</span> <span class="s2">&quot;name&quot;</span><span
+            class="p">:</span> <span class="s2">&quot;Alcazar&quot;</span><span
+            class="p">})</span>
+</pre>
+    </div>
+
+
+    <p>既然我们了解了Jinja2中的所有工作原理，那么我们就将其添加到我们自己的框架中。首先，让我们安装jinja2：</p>
+    <div class="highlight"><pre><span></span>pip install Jinja2
+</pre>
+    </div>
+
+
+    <p>
+      然后，在我们的<code>API</code>类的<code>__init__</code>方法中创建<code>Environment</code>
+      对象：</p>
+    <div class="highlight"><pre><span></span><span class="c1"># api.py</span>
+<span class="kn">from</span> <span class="nn">jinja2</span> <span class="kn">import</span> <span
+              class="n">Environment</span><span class="p">,</span> <span
+              class="n">FileSystemLoader</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<span class="k">class</span> <span class="nc">API</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span
+              class="p">(</span><span class="bp">self</span><span
+              class="p">,</span> <span class="n">templates_dir</span><span
+              class="o">=</span><span
+              class="s2">&quot;templates&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">routes</span> <span
+              class="o">=</span> <span class="p">{}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">templates_env</span> <span
+              class="o">=</span> <span class="n">Environment</span><span
+              class="p">(</span><span class="n">loader</span><span
+              class="o">=</span><span class="n">FileSystemLoader</span><span
+              class="p">(</span><span class="n">os</span><span
+              class="o">.</span><span class="n">path</span><span
+              class="o">.</span><span class="n">abspath</span><span
+              class="p">(</span><span class="n">templates_dir</span><span
+              class="p">)))</span>
+
+    <span class="o">...</span>
+</pre>
+    </div>
+
+
+    <p>
+      我们做了几乎与上面相同的事情，除了我们为<code>templates_dir</code>提供了一个默认值，<code>templates</code>以便用户不必写它。现在我们有了实现我们之前设计的<code>template</code>方法的所有方法：
+    </p>
+    <div class="highlight"><pre><span></span><span class="c1"># api.py</span>
+
+<span class="k">class</span> <span class="nc">API</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">template</span><span
+              class="p">(</span><span class="bp">self</span><span
+              class="p">,</span> <span class="n">template_name</span><span
+              class="p">,</span> <span class="n">context</span><span
+              class="o">=</span><span class="bp">None</span><span
+              class="p">):</span>
+        <span class="k">if</span> <span class="n">context</span> <span
+              class="ow">is</span> <span class="bp">None</span><span
+              class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span
+              class="p">{}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span
+              class="o">.</span><span class="n">templates_env</span><span
+              class="o">.</span><span class="n">get_template</span><span
+              class="p">(</span><span class="n">template_name</span><span
+              class="p">)</span><span class="o">.</span><span
+              class="n">render</span><span class="p">(</span><span
+              class="o">**</span><span class="n">context</span><span
+              class="p">)</span>
+</pre>
+    </div>
+
+
+    <p>我认为这里没有必要解释任何事情。你唯一想知道的是为什么我给了<code>context</code>一个默认值<code>None</code>，检查它是否是<code>None</code>，然后将值设置为空字典<code>{}</code>。你可能会说我可以在声明中给它默认值<code>{}</code>。但是<code>dict</code>它是一个可变对象，在Python中将可变对象设置为默认值是一种不好的做法。<a
+            href="https://docs.python-guide.org/writing/gotchas/#mutable-default-arguments">在这里</a>阅读更多相关信息。
+    </p>
+    <p>随着一切准备就绪，我们可以创建模板和处理程序。首先，创建<code>templates</code>文件夹：</p>
+    <div class="highlight"><pre><span></span>mkdir templates
+</pre>
+    </div>
+
+
+    <p>通过执行<code>touch templates/index.html</code>创建文件<code>index.html</code>并将以下内容放入：
+    </p>
+    <div class="highlight"><pre><span></span><span class="p">&lt;</span><span
+            class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{{ title }}<span
+              class="p">&lt;/</span><span class="nt">title</span><span
+              class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">body</span><span
+              class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>The name of the framework is {{ name }}<span
+              class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span
+              class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">html</span><span
+              class="p">&gt;</span>
+</pre>
+    </div>
+
+
+    <p>现在我们可以在我们的<code>app.py</code>创建处理程序：</p>
+    <div class="highlight"><pre><span></span><span class="c1"># app.py</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/template&quot;</span><span
+              class="p">)</span>
+<span class="k">def</span> <span class="nf">template_handler</span><span
+              class="p">(</span><span class="n">req</span><span
+              class="p">,</span> <span class="n">resp</span><span
+              class="p">):</span>
+    <span class="n">resp</span><span class="o">.</span><span
+              class="n">body</span> <span class="o">=</span> <span
+              class="n">app</span><span class="o">.</span><span class="n">template</span><span
+              class="p">(</span><span
+              class="s2">&quot;index.html&quot;</span><span
+              class="p">,</span> <span class="n">context</span><span
+              class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span
+              class="p">:</span> <span
+              class="s2">&quot;Alcazar&quot;</span><span
+              class="p">,</span> <span class="s2">&quot;title&quot;</span><span
+              class="p">:</span> <span
+              class="s2">&quot;Best Framework&quot;</span><span
+              class="p">})</span>
+</pre>
+    </div>
+
+
+    <p>就是这样（好吧，差不多）。启动<code>gunicorn</code>然后访问<code>http://localhost:8000/template</code>。你会看到一个大大的<code>Internal
+      Server Error</code>。那是因为<code>resp.body</code>期望bytes,
+      而我们的<code>template</code>方法返回一个unicode字符串。因此，我们需要对其进行编码：</p>
+    <div class="highlight"><pre><span></span><span class="c1"># app.py</span>
+
+<span class="nd">@api.route</span><span class="p">(</span><span class="s2">&quot;/template&quot;</span><span
+              class="p">)</span>
+<span class="k">def</span> <span class="nf">template_handler</span><span
+              class="p">(</span><span class="n">req</span><span
+              class="p">,</span> <span class="n">resp</span><span
+              class="p">):</span>
+    <span class="n">resp</span><span class="o">.</span><span
+              class="n">body</span> <span class="o">=</span> <span
+              class="n">app</span><span class="o">.</span><span class="n">template</span><span
+              class="p">(</span><span
+              class="s2">&quot;index.html&quot;</span><span
+              class="p">,</span> <span class="n">context</span><span
+              class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span
+              class="p">:</span> <span
+              class="s2">&quot;Alcazar&quot;</span><span
+              class="p">,</span> <span class="s2">&quot;title&quot;</span><span
+              class="p">:</span> <span
+              class="s2">&quot;Best Framework&quot;</span><span
+              class="p">})</span><span class="o">.</span><span
+              class="n">encode</span><span class="p">()</span>
+</pre>
+    </div>
+
+
+    <p>重新启动gunicorn，你将看到我们的模板的所有荣耀。在后续的文章中，我们将不再需要<code>encode</code>并使我们的API更漂亮。
+    </p>
+    <h2>结论</h2>
+    <p>我们在这篇文章中实现了三个新功能：</p>
+    <ul>
+      <li>测试客户端</li>
+      <li>添加路径的替代方式（如Django的实现方式）</li>
+      <li>支持模板</li>
+    </ul>
+    <p>请务必在评论中告诉我们应该在本系列中实现的其他功能。对于下一部分，我们肯定会添加对静态文件的支持，但我不确定我们应该添加哪些其他功能。</p>
+    <p><a href="/write-python-framework-part-one.html"><em>在这里看看第一部分</em></a>
+      <a href="/write-python-framework-part-two.html"><em>在这里看看第二部分</em></a></p>
+    <blockquote>
+      <p>稍微提醒一下，这个系列是基于我为学习目的而编写的<a href="https://github.com/rahmonov/alcazar">Alcazar框架</a>。如果你喜欢这个系列，<a
+              href="https://github.com/rahmonov/alcazar">请在这儿</a>查看博客中的内容，一定要通过star该repo来表达你的喜爱。
+      </p>
+    </blockquote>
+    <p>Fight on!</p></article>
+</aside><!-- /#featured -->
+<section class="body" id="content">
+  <h1>Other articles</h1>
+  <hr/>
+  <ol class="hfeed" id="posts-list">
+
+    <li>
+      <article class="hentry">
+        <header>
+          <h1><a href="/write-python-framework-part-two.html" rel="bookmark"
+                 title="Permalink to 如何编写Python Web框架（二）">如何编写Python
+            Web框架（二）</a></h1>
+        </header>
+
+        <div class="entry-content">
+          <footer class="post-info">
+            <abbr class="published" title="2019-03-01T15:51:00+08:00">
+              Published: 周五 01 三月 2019
+            </abbr>
+
+            <address class="vcard author">
+              By <a class="url fn"
+                    href="/author/dong-feng-wei-ming.html">东风微鸣</a>
+            </address>
+            <p>In <a href="/category/python.html">python</a>.</p>
+            <p>tags: <a href="/tag/python.html">python</a> <a
+                    href="/tag/webkuang-jia.html">web框架</a></p>
+          </footer><!-- /.post-info --> <p>编写自己的Python Web框架, 实现: 检查重复的路径;
+          基于类的处理程序; 单元测试</p>
+          <a class="readmore" href="/write-python-framework-part-two.html">read
+            more</a>
+        </div><!-- /.entry-content -->
+      </article>
+    </li>
+
+    <li>
+      <article class="hentry">
+        <header>
+          <h1><a href="/write-python-framework-part-one.html" rel="bookmark"
+                 title="Permalink to 如何编写Python Web框架（一）">如何编写Python
+            Web框架（一）</a></h1>
+        </header>
+
+        <div class="entry-content">
+          <footer class="post-info">
+            <abbr class="published" title="2019-03-01T14:44:00+08:00">
+              Published: 周五 01 三月 2019
+            </abbr>
+
+            <address class="vcard author">
+              By <a class="url fn"
+                    href="/author/dong-feng-wei-ming.html">东风微鸣</a>
+            </address>
+            <p>In <a href="/category/python.html">python</a>.</p>
+            <p>tags: <a href="/tag/python.html">python</a> <a
+                    href="/tag/webkuang-jia.html">web框架</a></p>
+          </footer><!-- /.post-info --> <p>编写自己的Python Web框架, 实现: WSGI兼容;
+          请求处理程序; 路由：简单和参数化</p>
+          <a class="readmore" href="/write-python-framework-part-one.html">read
+            more</a>
+        </div><!-- /.entry-content -->
+      </article>
+    </li>
+  </ol><!-- /#posts-list -->
+</section><!-- /#content -->
+<section class="body" id="extras">
+  <div class="blogroll">
+    <h2>links</h2>
+    <ul>
+      <li><a href="http://getpelican.com/">Pelican</a></li>
+      <li><a href="http://python.org/">Python.org</a></li>
+      <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+      <li><a href="#">You can modify those links in your config file</a></li>
+    </ul>
+  </div><!-- /.blogroll -->
+  <div class="social">
+    <h2>social</h2>
+    <ul>
+
+      <li><a href="#">You can add links in your config file</a></li>
+      <li><a href="#">Another social link</a></li>
+    </ul>
+  </div><!-- /.social -->
+</section><!-- /#extras -->
+
+<footer class="body" id="contentinfo">
+  <address class="vcard body" id="about">
+    Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes
+    great advantage of <a href="http://python.org">Python</a>.
+  </address><!-- /#about -->
+
+  <p>The theme is by <a
+          href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing
+    Magazine</a>, thanks!</p>
+</footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -33,3 +33,8 @@ DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
+
+# my-pelican conf
+DEFAULT_DATE = 'fs'
+SUMMARY_MAX_LENGTH = 100
+FILENAME_METADATA = '(?P<slug>.*)'
