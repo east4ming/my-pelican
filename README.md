@@ -32,3 +32,9 @@ My blog with pelican.
 - Create 3 md articles, mod internal content link
 - Mod pelicanconf and articles' metadata
 - Add images in articles
+
+## Hotfix
+
+### docutils localization
+
+- Change `DEFAULT_LANG = 'zh_CN'`
