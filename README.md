@@ -23,3 +23,12 @@ My blog with pelican.
 - 优化: 中文字体优化
 - 优化: 显示emoji
 - BUG: 不支持`[TOC]`
+
+## Releases
+
+### 0.1.0
+
+- Inital my pelican blog
+- Create 3 md articles, mod internal content link
+- Mod pelicanconf and articles' metadata
+- Add images in articles
