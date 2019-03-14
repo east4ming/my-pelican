@@ -12,17 +12,22 @@ My blog with pelican.
    1. About
    2. Contact
 3. 通过脚本导入已有内容
+4. 添加备案相关链接
 
 ## Feature
 
 ### init-articles
 
-- BUG: `Docutils has no localization for 'chinese (simplified)'. Using 'en' instead.`
+- ~~BUG: `Docutils has no localization for 'chinese (simplified)'. Using 'en' instead.` ~~
 - BUG: 图片按原尺寸显示, 未自动缩放.
 - 优化: `周五 01 三月 2019` 显示方式不好, 应调整为: `2019年3月1日 周五 14:44`或者`2019-03-01 14:44`
 - 优化: 中文字体优化
 - 优化: 显示emoji
 - BUG: 不支持`[TOC]`
+
+### beian-links
+
+- 20190320: TODO
 
 ## Releases
 
