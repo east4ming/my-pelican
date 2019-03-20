@@ -13,6 +13,15 @@ My blog with pelican.
    2. Contact
 3. 通过脚本导入已有内容
 4. 添加备案相关链接
+5. `pelicanconf.py` `publishconf.py` 配置优化
+6. articles合并
+7. 新增pages, 包括: about, contact, 404, 50X等
+8. 调整pelican `tasks.py` `Makefile`, 如发布方式等
+9. 生产发布
+10. 配置ssl
+11. 选择并安装插件. 如: toc, 图片插件等
+12. 选择并安装主题, 如: 大小屏适配, 淡雅主题.
+13. 创建content批量倒入工具
 
 ## Feature
 
