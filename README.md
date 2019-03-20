@@ -28,6 +28,8 @@ My blog with pelican.
 ### beian-links
 
 - 20190320: TODO
+- [沪ICP备19007314号-1](http://www.miitbeian.gov.cn/)
+- 公安备案正在审核
 
 ## Releases
 
