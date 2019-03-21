@@ -10,6 +10,7 @@ markdown = "*"
 tzlocal = "*"
 pelican = "*"
 invoke = "*"
+pymdown-extensions = "*"
 
 [requires]
 python_version = "3.7"

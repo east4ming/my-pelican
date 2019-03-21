@@ -1,0 +1,19 @@
+User-agent: Googlebot
+Disallow:
+User-agent: googlebot-image
+Disallow:
+User-agent: googlebot-mobile
+Disallow:
+User-agent: MSNBot
+Disallow:
+User-agent: ia_archiver
+Disallow:
+User-agent: baiduspider
+Disallow:
+User-agent: *
+Disallow:
+Disallow: /feeds/
+Disallow: /archives/
+Disallow: /drafts/
+Disallow: /tag/
+Disallow: /author/
