@@ -105,3 +105,10 @@ venv.bak/
 
 # .idea
 .idea/
+
+# pelican
+output/
+cache/
+
+# .swp
+.swp
