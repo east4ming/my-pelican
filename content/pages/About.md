@@ -27,7 +27,7 @@ Title: About
 
 ## 赞赏支持
 
-喜欢我的博客吗? 打赏一杯:coffee:吧。另外记得给我留言或订阅哦 :tada::tada::tada:
+喜欢我的博客吗? 打赏一杯:coffee:吧。您的支持是对我的最大鼓励～ 另外记得给我留言或订阅哦 :tada::tada::tada:
 
 ![微信赞赏码]({static}/images/wechat_paycode.png)
 

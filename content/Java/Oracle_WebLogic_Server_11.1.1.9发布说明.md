@@ -1,10 +1,10 @@
 Title: Oracle WebLogic Server 11.1.1.9发布说明
 Date: 2019-03-14 22:06
 Category: Java
-Tags: WebLogic,译文
+Tags: WebLogic, 译文, java
 Slug: oracle-webLogic-server-11.1.1.9-release-notes
 Authors: HelloWorDomain
-Summary:这是Oracle WebLogic Server 11.1.1.9发布说明
+Summary: 这是Oracle WebLogic Server 11.1.1.9发布说明
 
 # Oracle WebLogic Server 11.1.1.9发布说明
 [参照链接](https://docs.oracle.com/middleware/11119/wls/WLSRN/issues.htm#WLSRN114)

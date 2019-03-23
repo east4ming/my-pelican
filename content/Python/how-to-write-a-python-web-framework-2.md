@@ -7,7 +7,6 @@ Slug: write-python-framework-part-two
 Author: 东风微鸣
 Summary: 编写自己的Python Web框架, 实现: 检查重复的路径; 基于类的处理程序; 单元测试
 
-![]({static}/images/Python-Web-Development-Tutorials.jpg)
 # 如何编写Python Web框架（二）
 
 > 本文为译文
