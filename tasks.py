@@ -11,7 +11,7 @@ CONFIG = {
     # Local path configuration (can be absolute or relative to tasks.py)
     'deploy_path': 'output',
     # Remote server configuration
-    'production': 'casey@212.64.107.120:22',
+    # 'production': 'casey@212.64.107.120:22',
     'dest_path': '/usr/share/nginx/html',
     # Port for `serve`
     'port': 8000,
@@ -78,7 +78,7 @@ def publish(c):
     """Publish to production via rsync"""
     c.run('pelican -s publishconf.py')
     c.run(
-        'rsync --delete --exclude ".DS_Store" -pthrvz -c '
-        '{} {production}:{dest_path}'.format(
+        'sudo rsync --delete --cvs-exclude -pthrv -c '
+        '{} {dest_path}'.format(
             CONFIG['deploy_path'].rstrip('/') + '/',
             **CONFIG))

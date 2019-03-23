@@ -95,6 +95,28 @@ My blog with pelican.
 
 - [ ] LinkedIn 自带有图标, 而国内网站没有. 导致显示错位
 
+### optimize-publish-scripts
+
+1. 优化`tasks.py`文件. 通过`rsync` local方式同步; (不压缩, 通过`sudo`执行)
+2. 调整`Makefile`文件.
+3. 调整`publishconf.py`:
+   1. 导入`pelicanconf.py`的配置
+   2. rss配置: 类别和tag加上前置单词, 避免冲突, rss包括全部文章内容
+
+> :notebook: 备注:
+>
+> ```bash
+> sudo rsync -pthrvc --cvs-exclude --delete
+> -p --perms：保持perms属性(权限，不包括特殊权限)。
+> -t --times：保持mtime属性。强烈建议任何时候都加上"-t"，否则目标文件mtime会设置为系统时间，导致下次更新检查出mtime不同从而导致增量传输无效。
+> -h, --human-readable        以人类可读方式输出信息。
+> -r, --recursive             以递归模式拷贝目录
+> -v, --verbose               输出rsync daemon启动时的详细信息
+> -c, --checksum              改变了rsync检查文件改变和决定是否要传输的方式. 使用该选项，将对每个匹配了大小的文件比较128位的校验码。
+> --delete                删除receiver端有而sender端没有的文件，但不是删除receiver端所有文件，而是只对将要同步的目录生效
+> ```
+>
+
 ## Releases
 
 ### 0.1.0
