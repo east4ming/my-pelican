@@ -29,8 +29,15 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('简书', 'https://www.jianshu.com/u/0f08daeaa5a9'),
-          ('微博', 'https://weibo.com/long5to2gf'),)
+SOCIAL = (('<img src="/images/favicon-jianshu.ico" width="16" height="16"> 简书',
+           'https://www.jianshu.com/u/0f08daeaa5a9'),
+          ('<img src="/images/favicon-weibo.ico" width="16" height="16"> '
+           '微博', 'https://weibo.com/long5to2gf'),
+          ('<img src="/images/favicon-linkedin.ico" width="16" height="16"> '
+           '领英', 'https://www.linkedin.com/in/%E5%87%AF%E4%B8%9C-%E5%B4'
+                       '%94'
+                '-136128116/'),
+          )
 
 DEFAULT_PAGINATION = 10
 
@@ -54,7 +61,7 @@ MARKDOWN = {
     'extension_configs': {
         'markdown.extensions.codehilite': {
             'css_class': 'highlight',
-            'linenums': True,
+            # 'linenums': True,
         },
         'markdown.extensions.extra': {
             'markdown.extensions.footnotes': {},
@@ -62,7 +69,7 @@ MARKDOWN = {
         },
         'markdown.extensions.meta': {},
         'markdown.extensions.toc': {
-            'anchorlink': True,
+            # 'anchorlink': True,
             'permalink': True,
             'toc_depth': 3,
         },
@@ -101,3 +108,6 @@ DATE_FORMATS = {
     'cn': ('zh_CN', '%Y-%m-%d %A'),
 }
 LOCALE = ('en_US.utf8', 'zh_CN.utf8')
+
+# content order
+PAGE_ORDER_BY = 'basename'
