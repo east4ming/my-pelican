@@ -3,23 +3,23 @@ My blog with pelican.
 
 ## TODO
 
-1. 创建2篇 `article` (web框架开发的文章)
-   1. 添加`images`文件夹放图片, 并链接静态文件-图片
-   2. 站内链接
-   3. Category 暂定为文件夹`python`
-   4. 包含所有元数据关键字.
+1. ~~创建2篇 `article` (web框架开发的文章)~~
+   1. ~~添加`images`文件夹放图片, 并链接静态文件-图片~~
+   2. ~~站内链接~~
+   3. ~~Category 暂定为文件夹`python`~~
+   4. ~~包含所有元数据关键字.~~
 2. 创建2个`pages`:
    1. About
    2. Contact
 3. 通过脚本导入已有内容
-4. 添加备案相关链接
-5. `pelicanconf.py` `publishconf.py` 配置优化
+4. 添加备案相关链接 - DOING
+5. ~~`pelicanconf.py` `publishconf.py` 配置优化 ~~
 6. articles合并
 7. 新增pages, 包括: about, contact, 404, 50X等
 8. 调整pelican `tasks.py` `Makefile`, 如发布方式等
 9. 生产发布
 10. 配置ssl
-11. 选择并安装插件. 如: toc, 图片插件等
+11. 选择并安装插件. 如: 图片插件等
 12. 选择并安装主题, 如: 大小屏适配, 淡雅主题.
 13. 创建content批量倒入工具
 
@@ -40,10 +40,10 @@ My blog with pelican.
 
 ### conf-optimazation
 
-- 20190320: TODO
-
 1. 调整`pelicanconf.py`
 2. 调整`publishconf.py`
+3. 增加 emoji 包
+4. 增加`robots.txt` `faviron`
 
 #### 具体调整内容
 
