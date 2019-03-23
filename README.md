@@ -1,6 +1,8 @@
 # my-pelican
 My blog with pelican.
 
+[TOC]
+
 ## TODO
 
 - [x] 创建2篇 `article` (web框架开发的文章)
@@ -12,8 +14,8 @@ My blog with pelican.
 - [x] 配置`pelicanconf.py` `publishconf.py` 优化
 - [x] articles合并
 - [x] 新增pages, 包括: about, contact, 404, 50X等
-- [ ] 调整pelican `tasks.py` `Makefile`, 如发布方式等
-- [ ] 生产发布
+- [x] 调整pelican `tasks.py` `Makefile`, 如发布方式等
+- [x] 生产发布
 - [ ] 配置ssl
 - [ ] 选择并安装插件. 如: 图片插件等
 - [ ] 选择并安装主题, 如: 大小屏适配, 淡雅主题.
@@ -125,6 +127,26 @@ My blog with pelican.
 - Create 3 md articles, mod internal content link
 - Mod pelicanconf and articles' metadata
 - Add images in articles
+
+### 0.2.0
+
+- 正式对外发布我的博客
+
+#### 内容
+
+- 包括3个类别: python, java和可观察性
+- 包括2个pages: About 和 Contact
+- 可以通过[rss feed](http://www.ewhisper.cn/feeds/all.rss.xml)订阅
+
+#### 功能
+
+- markdown编写
+   - 支持toc
+   - 支持emoji
+- 添加 faviron
+- 添加 robots.txt
+- 添加 404页面
+- 添加 jianshu weibo linkedin 个人主页链接
 
 ## Hotfix
 

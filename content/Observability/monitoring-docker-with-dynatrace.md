@@ -4,7 +4,7 @@ Category: Observability
 Tags: APM, Dynatrace, docker
 Slug: monitoring-docker-app-with-dynatrace
 Authors: 东风微鸣
-Summary: 本章节介绍了将AppMon agent与dockerized应用程序集成的两种方案。
+Summary: 本文介绍了将Dynatrace agent与docker容器化应用程序集成的两种方案。
 
 [TOC]
 
