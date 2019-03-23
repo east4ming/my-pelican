@@ -27,12 +27,12 @@ My blog with pelican.
 
 ### init-articles
 
-- ~~BUG: `Docutils has no localization for 'chinese (simplified)'. Using 'en' instead.` ~~
-- BUG: 图片按原尺寸显示, 未自动缩放.
-- 优化: `周五 01 三月 2019` 显示方式不好, 应调整为: `2019年3月1日 周五 14:44`或者`2019-03-01 14:44`
-- 优化: 中文字体优化
-- 优化: 显示emoji
-- BUG: 不支持`[TOC]`
+- [x] BUG: `Docutils has no localization for 'chinese (simplified)'. Using 'en' instead.` 
+- [ ] BUG: 图片按原尺寸显示, 未自动缩放.
+- [x] 优化: `周五 01 三月 2019` 显示方式不好, 应调整为: `2019年3月1日 周五 14:44`或者`2019-03-01 14:44`
+- [ ] 优化: 中文字体优化
+- [x] 优化: 显示emoji
+- [x] BUG: 不支持`[TOC]`
 
 ### beian-links
 
@@ -85,21 +85,19 @@ My blog with pelican.
 
 #### Bugs
 
-1. 行号宽度显示错乱(可能跟: `fenced_code` 或 `linenums`有关)
+- [x] 行号宽度显示错乱 - 删除行号配置
 
 ### add-pages
 
-1. 增加 about 页面
+1. 增加 about 页面 - 增加支付宝付款码和weixin赞赏码
 2. 增加 contact 页面
 3. 增加 404 页面
 4. 增加 50X 页面
 5. social 增加 LinkedIn 链接: https://www.linkedin.com/in/%E5%87%AF%E4%B8%9C-%E5%B4%94-136128116/
 
-#### TODO
+#### Bugs
 
-1. 增加支付宝付款码
-2. 调整 about contact位置到最后
-
+- [ ] LinkedIn 自带有图标, 而国内网站没有. 导致显示错位
 
 ## Releases
 

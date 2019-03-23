@@ -28,3 +28,7 @@ Title: About
 ## 赞赏支持
 
 喜欢我的博客吗? 打赏一杯:coffee:吧。另外记得给我留言或订阅哦 :tada::tada::tada:
+
+![微信赞赏码]({static}/images/wechat_paycode.png)
+
+![支付宝收款码]({static}/images/alipay_paycode.png)
