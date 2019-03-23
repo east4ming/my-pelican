@@ -1,7 +1,7 @@
 Title: 如何编写Python Web框架（二）
 Date: 2019-03-01 15:51
 Status: published
-Category: python
+Category: Python
 Tags: python, web框架
 Slug: write-python-framework-part-two
 Author: 东风微鸣

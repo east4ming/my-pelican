@@ -14,7 +14,7 @@ My blog with pelican.
 3. 通过脚本导入已有内容
 4. 添加备案相关链接 - DOING
 5. ~~`pelicanconf.py` `publishconf.py` 配置优化 ~~
-6. articles合并
+6. ~~articles合并~~
 7. 新增pages, 包括: about, contact, 404, 50X等
 8. 调整pelican `tasks.py` `Makefile`, 如发布方式等
 9. 生产发布
