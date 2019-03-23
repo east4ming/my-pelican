@@ -38,6 +38,56 @@ My blog with pelican.
 
 - 20190320: TODO
 
+### conf-optimazation
+
+- 20190320: TODO
+
+1. 调整`pelicanconf.py`
+2. 调整`publishconf.py`
+
+#### 具体调整内容
+
+1. 添加`SITESUBTITLE`
+2. `SOCIAL` 添加 weibo和简书
+3. `LOAD_CONTENT_CACHE`: `pelicanconf.py` 为`False`, `publishconf.py`为`True`
+4. `RELATIVE_URLS`: `pelicanconf.py` 为`True`, `publishconf.py`为`False`
+5. github
+6. `USE_FOLDER_AS_CATEGORY = True`
+7. `OUTPUT_RETENTION = [".git", ".idea"]`
+8. `LOG_FILTER`
+9. `MARKDOWN`:
+   1. `markdown.extensions.codehilite` 增加行号;
+   2. `markdown.extensions.extra`: 增加footnotes和fenced_code;
+   3. 启用toc功能
+   4. 启用emoji功能
+      1. `pipenv`安装`pymdown-extensions`
+      2. `pelicanconf`增加`import  pymdownx.emoji`
+      3. 增加配置`pymdownx.emoji`
+10. `publishconf.py`导入`pelicanconf.py`配置.
+11. `STATIC_PATHS` 加入`assets`
+12. `SLUGIFY_SOURCE` 使用文章的文件名
+13. `publishconf.py`修改:`CACHE_CONTENT = True` (默认为False)
+14. 增加年度/月度存档
+15. 修改默认存档的`SAVE_AS`
+16. 修改默认日期格式为:`%Y-%m-%d %A`
+17. 添加`DATE_FORMATS`
+18. 添加`LOCALE`
+19. 添加`faviron.ico`
+20. 添加`robots.txt`
+21. 添加 feed conf: 禁用atom feed, 启用rss feed
+   1. `FEED_DOMAIN`
+   2. `FEED_RSS`
+   3. `FEED_ALL_RSS`
+   4. `CATEGORY_FEED_RSS`
+   5. `AUTHOR_FEED_RSS`
+   6.`TAG_FEED_RSS`
+   7. `RSS_FEED_SUMMARY_ONLY`
+
+#### Bugs
+
+1. 行号宽度显示错乱(可能跟: `fenced_code` 或 `linenums`有关)
+
+
 ## Releases
 
 ### 0.1.0
