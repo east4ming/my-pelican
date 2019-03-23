@@ -87,6 +87,19 @@ My blog with pelican.
 
 1. 行号宽度显示错乱(可能跟: `fenced_code` 或 `linenums`有关)
 
+### add-pages
+
+1. 增加 about 页面
+2. 增加 contact 页面
+3. 增加 404 页面
+4. 增加 50X 页面
+5. social 增加 LinkedIn 链接: https://www.linkedin.com/in/%E5%87%AF%E4%B8%9C-%E5%B4%94-136128116/
+
+#### TODO
+
+1. 增加支付宝付款码
+2. 调整 about contact位置到最后
+
 
 ## Releases
 
