@@ -6,6 +6,7 @@ Tags: python, web框架
 Slug: write-python-framework-part-three
 Author: 东风微鸣
 Summary: 编写自己的Python Web框架, 实现: 测试客户端; 添加路径的替代方式（如类似Django的实现）; 支持模板
+Image: /images/web-frameworks.jpg
 
 # 如何编写Python Web框架（三）
 

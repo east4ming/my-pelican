@@ -11,6 +11,7 @@ tzlocal = "*"
 pelican = "*"
 invoke = "*"
 pymdown-extensions = "*"
+beautifulsoup4 = "*"
 
 [requires]
 python_version = "3.7"

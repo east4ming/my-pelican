@@ -37,3 +37,6 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = 'feeds/{slug}.rss.xml'
 TAG_FEED_RSS = 'feeds/tag.{slug}.rss.xml'
 RSS_FEED_SUMMARY_ONLY = False
+
+# theme: Flex
+USE_LESS = False

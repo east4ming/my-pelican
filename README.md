@@ -17,7 +17,7 @@ My blog with pelican.
 - [x] 调整pelican `tasks.py` `Makefile`, 如发布方式等
 - [x] 生产发布
 - [ ] 配置ssl
-- [ ] 选择并安装插件. 如: 图片插件等
+- [ ] 选择并安装插件. 如: 图片插件等. [optimize_images](https://github.com/getpelican/pelican-plugins/tree/master/optimize_images) 和 [representative_image](https://github.com/getpelican/pelican-plugins/tree/master/representative_image)
 - [ ] 选择并安装主题, 如: 大小屏适配, 淡雅主题.
 - [ ] 创建content批量倒入工具
 
@@ -118,6 +118,41 @@ My blog with pelican.
 > --delete                删除receiver端有而sender端没有的文件，但不是删除receiver端所有文件，而是只对将要同步的目录生效
 > ```
 >
+
+### change-themes
+
+备选主题:
+
+- [attila](https://github.com/arulrajnet/attila/tree/02dcad911ba1eb2d797a79ec008a810d89a2fde1)
+- [backdrop](https://github.com/getpelican/pelican-themes/tree/master/backdrop)
+- [**alchemy**](https://github.com/nairobilug/pelican-alchemy/tree/f235c81bf323e6134b01915fc9a46b5e89ac238b) (大小屏适配)
+- [blue-penguin](https://github.com/jody-frankowski/blue-penguin/tree/311a5208c030ea62d85bbca952e31b6775a50c2c)
+- [bricks](https://github.com/getpelican/pelican-themes/tree/master/bricks) (大小屏适配)
+- [**brutalish**](https://github.com/mamcmanus/brutalist/tree/de551620221ec3f1958250adfaffbbc81e9b748c) (大小屏适配)
+- [**bulrush**](https://github.com/textbook/bulrush/tree/19b2fc4d79e7c060218172ae5484a4a216b40921) (大小屏适配)
+- [**Flex**](https://github.com/alexandrevicenzi/Flex/tree/b3bd59002a3e85803332c35702d90e1e19ef39b6)
+- [**html5-dopetrope**](https://github.com/PierrePaul/html5-dopetrope/tree/6796c779663b2797c7a411a776f5167b8b667dfc)
+- [nest](https://github.com/molivier/nest/tree/18aa1345f70219c00704848d321daf45c2f50ba7)
+- [**pelican-blue**](https://github.com/Parbhat/pelican-blue/tree/1dda054242f9267f4bd49891b022ac41c9ecfbe8) (大小屏适配)
+- [pelican-fh5co-marble](https://github.com/claudio-walser/pelican-fh5co-marble/tree/b1264366d1381c87e2940dde5a34383f10ce7c69)
+- [pelican-striped-html5up](https://github.com/getpelican/pelican-themes/tree/master/pelican-striped-html5up)
+- [twenty-pelican-html5up](https://github.com/frankV/twenty-pelican-html5up/tree/53cc173993b358690e8ea00de02154547d5dfdca)
+- [pure](https://github.com/PurePelicanTheme/pure)
+- [plumage](https://github.com/kdeldycke/plumage/tree/6e0dd7acaff3041f52205e1e58060473910029d9)
+- [**pelican-bootstrap3**](https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3) (大小屏适配)
+
+最终选择: **Flex**. TODO:
+
+- [ ] Related Posts
+- [ ] Minute read
+- [ ] Code Highlight Style
+- [ ] Translations - zh_CN
+- [ ] AddThis
+- [ ] Disqus
+- [ ] GA
+- [ ] Github Corners
+- [ ] Representative image
+
 
 ## Releases
 
