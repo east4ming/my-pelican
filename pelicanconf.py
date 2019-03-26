@@ -114,7 +114,6 @@ FAVICON = '/favicon.ico'
 BROWSER_COLOR = '#333333'
 PYGMENTS_STYLE = 'monokai'
 
-ROBOTS = 'index, follow'
 THEME = 'Flex'
 I18N_TEMPLATES_LANG = 'zh_CN'
 OG_LOCALE = 'zh_CN'
@@ -155,19 +154,6 @@ SITEMAP = {
         'pages': 'monthly',
     }
 }
-DISQUS_SITENAME = "ewhisperblog"
-ADD_THIS_ID = "ra-5c98c3e21c4def55"
-# STATUSCAKE = {
-#     'trackid': 'SL0UAgrsYP',
-#     'days': 7,
-#     'rumid': 6852,
-#     'design': 6,
-# }
 CUSTOM_CSS = 'static/custom.css'
 USE_LESS = True
-# GOOGLE_ANALYTICS = ''
-# GOOGLE_TAG_MANAGER = ''
-# GOOGLE_ADSENSE = {}
-# PIWIK_SITE_ID = ''
-# PIWIK_URL = ''
 ARTICLE_HIDE_TRANSLATION = True

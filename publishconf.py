@@ -18,7 +18,7 @@ DELETE_OUTPUT_DIRECTORY = True
 
 # Following items are often useful when publishing
 
-# DISQUS_SITENAME = ""
+DISQUS_SITENAME = "ewhisperblog"
 # GOOGLE_ANALYTICS = ""
 
 # my publish conf
@@ -40,3 +40,15 @@ RSS_FEED_SUMMARY_ONLY = False
 
 # theme: Flex
 USE_LESS = False
+ROBOTS = 'index, follow'
+ADD_THIS_ID = "ra-5c98c3e21c4def55"
+# STATUSCAKE = {
+#     'trackid': 'SL0UAgrsYP',
+#     'days': 7,
+#     'rumid': 6852,
+#     'design': 6,
+# }
+# GOOGLE_TAG_MANAGER = ''
+# GOOGLE_ADSENSE = {}
+# PIWIK_SITE_ID = ''
+# PIWIK_URL = ''
