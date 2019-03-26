@@ -52,12 +52,12 @@ GOOGLE_ADSENSE = {
     'ca_id': 'ca-pub-2290120018010607',    # Your AdSense ID
     'page_level_ads': True,          # Allow Page Level Ads (mobile)
     'ads': {
-        'aside': '1234561',          # Side bar banner (all pages)
-        'main_menu': '1234562',      # Banner before main menu (all pages)
-        'index_top': '1234563',      # Banner after main menu (index only)
-        'index_bottom': '1234564',   # Banner before footer (index only)
-        'article_top': '1234565',    # Banner after article title (article only)
-        'article_bottom': '1234566', # Banner after article content (article only)
+        'aside': '',          # Side bar banner (all pages)
+        'main_menu': '',      # Banner before main menu (all pages)
+        'index_top': '',      # Banner after main menu (index only)
+        'index_bottom': '',   # Banner before footer (index only)
+        'article_top': '',    # Banner after article title (article only)
+        'article_bottom': '', # Banner after article content (article only)
     }
 }
 GUAGES = '5c9a5706a2f54b13557a67d0'
