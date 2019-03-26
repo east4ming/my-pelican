@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+from datetime import datetime
+
 import logging
 
 AUTHOR = '东风微鸣'
@@ -27,10 +29,11 @@ AUTHOR_FEED_RSS = None
 LINKS = ()
 
 # Social widget
-SOCIAL = (('reddit', 'https://www.jianshu.com/u/0f08daeaa5a9'),
+SOCIAL = (('weibo', 'https://weibo.com/long5to2gf'),
+          ('reddit', 'https://www.jianshu.com/u/0f08daeaa5a9'),
           ('linkedin', 'https://www.linkedin.com/in/凯东-崔-136128116/'),
-          ('facebook', 'https://weibo.com/long5to2gf'),
           ('github', 'https://github.com/east4ming'),
+          ('wechat', '/images/wechat_paycode.png'),
           )
 
 DEFAULT_PAGINATION = 10
@@ -129,7 +132,7 @@ CC_LICENSE = {
     'version': '4.0',
     'slug': 'by-sa'
 }
-COPYRIGHT_YEAR = 2019
+COPYRIGHT_YEAR = datetime.now().year
 
 PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = ['sitemap', 'post_stats', 'i18n_subsites', 'related_posts',
