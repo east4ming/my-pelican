@@ -61,5 +61,3 @@ GOOGLE_ADSENSE = {
     }
 }
 GUAGES = '5c9a5706a2f54b13557a67d0'
-# PIWIK_SITE_ID = ''
-# PIWIK_URL = ''
