@@ -42,12 +42,11 @@ RSS_FEED_SUMMARY_ONLY = False
 USE_LESS = False
 ROBOTS = 'index, follow'
 ADD_THIS_ID = "ra-5c98c3e21c4def55"
-# STATUSCAKE = {
-#     'trackid': 'SL0UAgrsYP',
-#     'days': 7,
-#     'rumid': 6852,
-#     'design': 6,
-# }
+STATUSCAKE = {
+    'trackid': 'CbJdcjmnCx',
+    'days': 7,
+    'design': 2,
+}
 GOOGLE_TAG_MANAGER = 'GTM-T9334L3'
 GOOGLE_ADSENSE = {
     'ca_id': 'ca-pub-2290120018010607',    # Your AdSense ID
