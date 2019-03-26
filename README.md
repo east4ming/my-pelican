@@ -145,7 +145,7 @@ My blog with pelican. http://www.EWhisper.cn
 - [x] Code Highlight Style - monokai
 - [x] Translations - zh_CN
 - [x] AddThis
-- [ ] Disqus
+- [ ] Disqus - 国内被屏蔽
 - [ ] GA
 - [x] Github Corners
 - [x] Representative image
