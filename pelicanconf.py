@@ -29,11 +29,11 @@ AUTHOR_FEED_RSS = None
 LINKS = ()
 
 # Social widget
-SOCIAL = (('weibo', 'https://weibo.com/long5to2gf'),
-          ('reddit', 'https://www.jianshu.com/u/0f08daeaa5a9'),
-          ('linkedin', 'https://www.linkedin.com/in/凯东-崔-136128116/'),
-          ('github', 'https://github.com/east4ming'),
+SOCIAL = (('reddit', 'https://www.jianshu.com/u/0f08daeaa5a9'),
+	  ('weibo', 'https://weibo.com/long5to2gf'),
           ('wechat', '/images/wechat_paycode.png'),
+          ('envelope-o', 'mailto:cuikaidong@foxmail.com'),
+          ('linkedin', 'https://www.linkedin.com/in/凯东-崔-136128116/'),
           )
 
 DEFAULT_PAGINATION = 10
