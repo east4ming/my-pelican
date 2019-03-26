@@ -89,6 +89,7 @@ EXTRA_PATH_METADATA = {
     'assets/robots.txt': {'path': 'robots.txt'},
     'assets/favicon.ico': {'path': 'favicon.ico'},
     'extra/custom.css': {'path': 'static/custom.css'},
+    'assets/devops_cover.png': {'path': 'devops_cover.png'},
 }
 SLUGIFY_SOURCE = 'basename'
 
@@ -160,3 +161,5 @@ SITEMAP = {
 CUSTOM_CSS = 'static/custom.css'
 USE_LESS = True
 ARTICLE_HIDE_TRANSLATION = True
+COVER = '/devops_cover.png'
+
