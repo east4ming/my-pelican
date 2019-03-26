@@ -45,7 +45,7 @@ ADD_THIS_ID = "ra-5c98c3e21c4def55"
 STATUSCAKE = {
     'trackid': 'CbJdcjmnCx',
     'days': 7,
-    'design': 2,
+    'design': 7,
 }
 GOOGLE_TAG_MANAGER = 'GTM-T9334L3'
 GOOGLE_ADSENSE = {
