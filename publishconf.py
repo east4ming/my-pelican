@@ -19,7 +19,7 @@ DELETE_OUTPUT_DIRECTORY = True
 # Following items are often useful when publishing
 
 DISQUS_SITENAME = "ewhisperblog"
-# GOOGLE_ANALYTICS = ""
+GOOGLE_ANALYTICS = "UA-136986082-1"
 
 # my publish conf
 LOAD_CONTENT_CACHE = True
