@@ -1,5 +1,5 @@
 # my-pelican
-My blog with pelican.
+My blog with pelican. http://www.EWhisper.cn
 
 [TOC]
 
@@ -17,8 +17,8 @@ My blog with pelican.
 - [x] 调整pelican `tasks.py` `Makefile`, 如发布方式等
 - [x] 生产发布
 - [ ] 配置ssl
-- [ ] 选择并安装插件. 如: 图片插件等. [optimize_images](https://github.com/getpelican/pelican-plugins/tree/master/optimize_images) 和 [representative_image](https://github.com/getpelican/pelican-plugins/tree/master/representative_image)
-- [ ] 选择并安装主题, 如: 大小屏适配, 淡雅主题.
+- [x] 选择并安装插件. 如: 图片插件等. [optimize_images](https://github.com/getpelican/pelican-plugins/tree/master/optimize_images) 和 [representative_image](https://github.com/getpelican/pelican-plugins/tree/master/representative_image)
+- [x] 选择并安装主题, 如: 大小屏适配, 淡雅主题.
 - [ ] 创建content批量倒入工具
 
 ## Feature
@@ -26,9 +26,9 @@ My blog with pelican.
 ### init-articles
 
 - [x] BUG: `Docutils has no localization for 'chinese (simplified)'. Using 'en' instead.` 
-- [ ] BUG: 图片按原尺寸显示, 未自动缩放.
+- [x] BUG: 图片按原尺寸显示, 未自动缩放.- optimize_images
 - [x] 优化: `周五 01 三月 2019` 显示方式不好, 应调整为: `2019年3月1日 周五 14:44`或者`2019-03-01 14:44`
-- [ ] 优化: 中文字体优化
+- [x] 优化: 中文字体优化 - font awesome
 - [x] 优化: 显示emoji
 - [x] BUG: 不支持`[TOC]`
 
@@ -93,9 +93,6 @@ My blog with pelican.
 4. 增加 50X 页面
 5. social 增加 LinkedIn 链接: https://www.linkedin.com/in/%E5%87%AF%E4%B8%9C-%E5%B4%94-136128116/
 
-#### Bugs
-
-- [ ] LinkedIn 自带有图标, 而国内网站没有. 导致显示错位
 
 ### optimize-publish-scripts
 
@@ -141,17 +138,18 @@ My blog with pelican.
 - [plumage](https://github.com/kdeldycke/plumage/tree/6e0dd7acaff3041f52205e1e58060473910029d9)
 - [**pelican-bootstrap3**](https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3) (大小屏适配)
 
-最终选择: **Flex**. TODO:
+最终选择: **Flex**. 
 
 - [ ] Related Posts
-- [ ] Minute read
-- [ ] Code Highlight Style
-- [ ] Translations - zh_CN
-- [ ] AddThis
+- [x] Minute read
+- [x] Code Highlight Style - monokai
+- [x] Translations - zh_CN
+- [x] AddThis
 - [ ] Disqus
 - [ ] GA
-- [ ] Github Corners
-- [ ] Representative image
+- [x] Github Corners
+- [x] Representative image
+- [ ] 增加国内社交媒体logo支持
 
 
 ## Releases
