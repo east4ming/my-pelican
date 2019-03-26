@@ -3,6 +3,39 @@ My blog with pelican. http://www.EWhisper.cn
 
 [TOC]
 
+## 功能
+
+- 大小屏幕自动适配
+- 相关帖子(通过插件实现)
+- 阅读分钟数(通过插件)
+- 多种代码突出显示风格
+- 中文支持
+
+## 集成
+
+- [x] AddThis
+- [x] Disqus
+- [ ] Gauges Analytics
+- [ ] Google AdSense
+- [ ] Google Analytics
+- [ ] Google Tag Manager
+- [ ] Piwik Analytics
+- [ ] StatusCake
+
+## 插件支持
+
+- 'sitemap', 
+- 'post_stats', 
+- 'i18n_subsites', 
+- 'related_posts',
+- 'representative_image', 
+- 'neighbors',
+- 'optimize_images'
+
+## License
+
+MIT License
+
 ## TODO
 
 - [x] 创建2篇 `article` (web框架开发的文章)

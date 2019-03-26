@@ -138,7 +138,7 @@ PLUGINS = ['sitemap', 'post_stats', 'i18n_subsites', 'related_posts',
 # plugin related_posts
 RELATED_POSTS_MAX = 5
 # plugin github-corners
-GITHUB_CORNER_URL = "https://github.com/east4ming"
+GITHUB_CORNER_URL = "https://github.com/east4ming/my-pelican"
 
 JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
 SITEMAP = {
