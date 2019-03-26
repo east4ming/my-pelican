@@ -10,6 +10,10 @@ My blog with pelican. http://www.EWhisper.cn
 - 阅读分钟数(通过插件)
 - 多种代码突出显示风格
 - 中文支持
+- emoji 支持
+- TOC 支持
+- footnotes 支持
+- RSS订阅
 
 ## 集成
 
@@ -173,7 +177,7 @@ MIT License
 
 最终选择: **Flex**. 
 
-- [ ] Related Posts
+- [x] Related Posts
 - [x] Minute read
 - [x] Code Highlight Style - monokai
 - [x] Translations - zh_CN
