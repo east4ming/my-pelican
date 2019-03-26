@@ -48,7 +48,7 @@ ADD_THIS_ID = "ra-5c98c3e21c4def55"
 #     'rumid': 6852,
 #     'design': 6,
 # }
-GOOGLE_TAG_MANAGER = 'T9334L3'
+GOOGLE_TAG_MANAGER = 'GTM-T9334L3'
 GOOGLE_ADSENSE = {
     'ca_id': 'ca-pub-2290120018010607',    # Your AdSense ID
     'page_level_ads': True,          # Allow Page Level Ads (mobile)
