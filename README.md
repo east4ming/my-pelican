@@ -52,7 +52,7 @@ MIT License
 - [x] 新增pages, 包括: about, contact, 404, 50X等
 - [x] 调整pelican `tasks.py` `Makefile`, 如发布方式等
 - [x] 生产发布
-- [ ] 配置ssl
+- [x] 配置ssl
 - [x] 选择并安装插件. 如: 图片插件等. [optimize_images](https://github.com/getpelican/pelican-plugins/tree/master/optimize_images) 和 [representative_image](https://github.com/getpelican/pelican-plugins/tree/master/representative_image)
 - [x] 选择并安装主题, 如: 大小屏适配, 淡雅主题.
 - [ ] 创建content批量倒入工具
@@ -187,6 +187,9 @@ MIT License
 - [x] Representative image
 - [x] 增加国内社交媒体logo支持 - wechat 和 weibo
 
+### ssl
+
+增加ssl支持.
 
 ## Releases
 
