@@ -181,11 +181,11 @@ MIT License
 - [x] Code Highlight Style - monokai
 - [x] Translations - zh_CN
 - [x] AddThis
-- [ ] Disqus - 国内被屏蔽
-- [ ] GA
+- [x] Disqus - 国内被屏蔽
+- [x] GA
 - [x] Github Corners
 - [x] Representative image
-- [ ] 增加国内社交媒体logo支持
+- [x] 增加国内社交媒体logo支持 - wechat 和 weibo
 
 
 ## Releases
@@ -216,6 +216,42 @@ MIT License
 - 添加 robots.txt
 - 添加 404页面
 - 添加 jianshu weibo linkedin 个人主页链接
+
+### 1.0.0
+
+- 使用主题Flex
+- 完善seo相关配置
+
+#### 内容
+
+- 增加一个新类别: DevOps, 新增2篇文章
+
+#### 功能
+
+- 大小屏幕自动适配
+- 相关帖子(通过插件实现)
+- 阅读分钟数(通过插件)
+- 中文支持
+
+#### 集成
+
+- AddThis
+- Disqus
+- Gauges Analytics
+- Google AdSense
+- Google Analytics
+- Google Tag Manager
+- StatusCake
+
+#### 插件支持
+
+- 'sitemap', 
+- 'post_stats', 
+- 'i18n_subsites', 
+- 'related_posts',
+- 'representative_image', 
+- 'neighbors',
+- 'optimize_images'
 
 ## Hotfix
 
