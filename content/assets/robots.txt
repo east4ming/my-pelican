@@ -17,3 +17,4 @@ Disallow: /archives/
 Disallow: /drafts/
 Disallow: /tag/
 Disallow: /author/
+Sitemap: http://www.ewhisper.cn/sitemap.xml

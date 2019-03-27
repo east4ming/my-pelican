@@ -4,6 +4,7 @@ Category: Java
 Tags: jvm, java, oom
 Authors: 东风微鸣
 Summary: 对于 java.lang.OutOfMemoryError: Java heap space , 最常见的原因很简单 -- 你把一个XXL号的应用放到了一个S号的Java heap space里了. 也就是说 -- 应用需要更多的Java heap space 来让它正常运行. 对于这个OutOfMemory, 其他的原因会更复杂, 通常是由于编程错误引起的.
+Image: /images/java_memory.png
 
 [TOC]
 

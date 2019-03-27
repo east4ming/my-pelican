@@ -2,10 +2,13 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+from datetime import datetime
+
 import logging
 
 AUTHOR = '东风微鸣'
-SITENAME = '东风微鸣 Blog'
+SITENAME = AUTHOR + " Blog"
+SITETITLE = AUTHOR
 SITESUBTITLE = "Focus on Python/Java/DevOps/Observability"
 SITEURL = ''
 
@@ -23,20 +26,16 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+LINKS = (
+    ('沪ICP备19007314号-1', 'http://www.miitbeian.gov.cn/'),
+)
 
 # Social widget
-SOCIAL = (('<img src="/images/favicon-jianshu.ico" width="16" height="16"> 简书',
-           'https://www.jianshu.com/u/0f08daeaa5a9'),
-          ('<img src="/images/favicon-weibo.ico" width="16" height="16"> '
-           '微博', 'https://weibo.com/long5to2gf'),
-          ('<img src="/images/favicon-linkedin.ico" width="16" height="16"> '
-           '领英', 'https://www.linkedin.com/in/%E5%87%AF%E4%B8%9C-%E5%B4'
-                       '%94'
-                '-136128116/'),
+SOCIAL = (('wechat', '/images/wechat_paycode.png'),
+          ('envelope-o', 'mailto:cuikaidong@foxmail.com'),
+          ('reddit', 'https://www.jianshu.com/u/0f08daeaa5a9'),
+          ('linkedin', 'https://www.linkedin.com/in/凯东-崔-136128116/'),
+          ('weibo', 'https://weibo.com/long5to2gf'),
           )
 
 DEFAULT_PAGINATION = 10
@@ -91,6 +90,8 @@ STATIC_PATHS = ['images',
 EXTRA_PATH_METADATA = {
     'assets/robots.txt': {'path': 'robots.txt'},
     'assets/favicon.ico': {'path': 'favicon.ico'},
+    'extra/custom.css': {'path': 'static/custom.css'},
+    'assets/devops_cover.png': {'path': 'devops_cover.png'},
 }
 SLUGIFY_SOURCE = 'basename'
 
@@ -111,3 +112,55 @@ LOCALE = ('en_US.utf8', 'zh_CN.utf8')
 
 # content order
 PAGE_ORDER_BY = 'basename'
+
+# pelican theme: Flex conf
+SITEDESCRIPTION = "Focus on Python/Java/DevOps/Observability"
+SITELOGO = '//s.gravatar.com/avatar/7c743bc6ac83171e35a5aa8bd66cc1ea?s=120'
+FAVICON = '/favicon.ico'
+BROWSER_COLOR = '#333333'
+PYGMENTS_STYLE = 'monokai'
+
+THEME = 'Flex'
+I18N_TEMPLATES_LANG = 'zh_CN'
+OG_LOCALE = 'zh_CN'
+MAIN_MENU = True
+HOME_HIDE_TAGS = False
+MENUITEMS = (('存档', '/archives/index.html'),
+             ('类别', '/categories.html'),
+             ('标签', '/tags.html'),
+             ('作者', '/authors.html')
+             )
+CC_LICENSE = {
+    'name': 'Creative Commons Attribution-ShareAlike',
+    'version': '4.0',
+    'slug': 'by-sa'
+}
+COPYRIGHT_YEAR = datetime.now().year
+
+PLUGIN_PATHS = ['pelican-plugins']
+PLUGINS = ['sitemap', 'post_stats', 'i18n_subsites', 'related_posts',
+           'representative_image', 'neighbors',
+           'optimize_images']
+# plugin related_posts
+RELATED_POSTS_MAX = 5
+# plugin github-corners
+GITHUB_CORNER_URL = "https://github.com/east4ming/my-pelican"
+
+JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.6,
+        'indexes': 0.6,
+        'pages': 0.5,
+    },
+    'changefreqs': {
+        'articles': 'weekly',
+        'indexes': 'daily',
+        'pages': 'monthly',
+    }
+}
+CUSTOM_CSS = 'static/custom.css'
+USE_LESS = True
+ARTICLE_HIDE_TRANSLATION = True
+COVER = '/devops_cover.png'
