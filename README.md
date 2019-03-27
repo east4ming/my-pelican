@@ -259,6 +259,10 @@ MIT License
 - 'neighbors',
 - 'optimize_images'
 
+### 1.1.0
+
+全面的ssl 支持
+
 ## Hotfix
 
 ### docutils localization
