@@ -46,13 +46,13 @@ MIT License
   - [x] 站内链接
   - [x] Category 暂定为文件夹`python`
   - [x] 包含所有元数据关键字.
-- [ ] 添加备案相关链接 - DOING
+- [ ] 添加备案相关链接 - DOING - 替换掉底部文字
 - [x] 配置`pelicanconf.py` `publishconf.py` 优化
 - [x] articles合并
 - [x] 新增pages, 包括: about, contact, 404, 50X等
 - [x] 调整pelican `tasks.py` `Makefile`, 如发布方式等
 - [x] 生产发布
-- [ ] 配置ssl
+- [x] 配置ssl
 - [x] 选择并安装插件. 如: 图片插件等. [optimize_images](https://github.com/getpelican/pelican-plugins/tree/master/optimize_images) 和 [representative_image](https://github.com/getpelican/pelican-plugins/tree/master/representative_image)
 - [x] 选择并安装主题, 如: 大小屏适配, 淡雅主题.
 - [ ] 创建content批量倒入工具
@@ -187,6 +187,12 @@ MIT License
 - [x] Representative image
 - [x] 增加国内社交媒体logo支持 - wechat 和 weibo
 
+### ssl
+
+- 增加ssl支持.
+- 调整 Disqus admin 里的 website URL
+- 调整 GA 默认网址
+- 调整 statuscake 的测试网址
 
 ## Releases
 
@@ -252,6 +258,10 @@ MIT License
 - 'representative_image', 
 - 'neighbors',
 - 'optimize_images'
+
+### 1.1.0
+
+全面的ssl 支持
 
 ## Hotfix
 
