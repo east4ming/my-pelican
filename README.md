@@ -46,7 +46,7 @@ MIT License
   - [x] 站内链接
   - [x] Category 暂定为文件夹`python`
   - [x] 包含所有元数据关键字.
-- [ ] 添加备案相关链接 - DOING
+- [ ] 添加备案相关链接 - DOING - 替换掉底部文字
 - [x] 配置`pelicanconf.py` `publishconf.py` 优化
 - [x] articles合并
 - [x] 新增pages, 包括: about, contact, 404, 50X等
