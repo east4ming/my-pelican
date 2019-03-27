@@ -27,7 +27,7 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-    ('沪ICP备19007314号', 'http://www.miitbeian.gov.cn/'),
+    ('沪ICP备19007314号-1', 'http://www.miitbeian.gov.cn/'),
 )
 
 # Social widget
