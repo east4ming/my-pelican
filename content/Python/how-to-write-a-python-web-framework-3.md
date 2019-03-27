@@ -6,8 +6,9 @@ Tags: python, web框架
 Slug: write-python-framework-part-three
 Author: 东风微鸣
 Summary: 编写自己的Python Web框架, 实现: 测试客户端; 添加路径的替代方式（如类似Django的实现）; 支持模板
+Image: /images/web-frameworks.jpg
+Related_posts: write-python-framework-part-one, write-python-framework-part-two
 
-# 如何编写Python Web框架（三）
 
 > 本文为译文
 >
@@ -378,8 +379,6 @@ def template_handler(req, resp):
 
 请务必在评论中告诉我们应该在本系列中实现的其他功能。对于下一部分，我们肯定会添加对静态文件的支持，但我不确定我们应该添加哪些其他功能。
 
-[*在这里看看第一部分*]({filename}how-to-write-a-python-web-framework-1.md)
-[*在这里看看第二部分*]({filename}how-to-write-a-python-web-framework-2.md)
 
 > 稍微提醒一下，这个系列是基于我为学习目的而编写的[Alcazar框架](https://github.com/rahmonov/alcazar)。如果你喜欢这个系列，[请在这儿](https://github.com/rahmonov/alcazar)查看博客中的内容，一定要通过star该repo来表达你的喜爱。
 
