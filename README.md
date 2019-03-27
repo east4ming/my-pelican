@@ -189,7 +189,10 @@ MIT License
 
 ### ssl
 
-增加ssl支持.
+- 增加ssl支持.
+- 调整 Disqus admin 里的 website URL
+- 调整 GA 默认网址
+- 调整 statuscake 的测试网址
 
 ## Releases
 
