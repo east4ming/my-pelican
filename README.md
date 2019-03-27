@@ -1,5 +1,5 @@
 # my-pelican
-My blog with pelican. http://www.EWhisper.cn
+My blog with pelican. https://www.EWhisper.cn
 
 [TOC]
 
@@ -211,7 +211,7 @@ MIT License
 
 - 包括3个类别: python, java和可观察性
 - 包括2个pages: About 和 Contact
-- 可以通过[rss feed](http://www.ewhisper.cn/feeds/all.rss.xml)订阅
+- 可以通过[rss feed](https://www.ewhisper.cn/feeds/all.rss.xml)订阅
 
 #### 功能
 
