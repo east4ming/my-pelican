@@ -19,12 +19,11 @@ My blog with pelican. http://www.EWhisper.cn
 
 - [x] AddThis
 - [x] Disqus
-- [ ] Gauges Analytics
-- [ ] Google AdSense
-- [ ] Google Analytics
-- [ ] Google Tag Manager
-- [ ] Piwik Analytics
-- [ ] StatusCake
+- [x] Gauges Analytics
+- [x] Google AdSense
+- [x] Google Analytics
+- [x] Google Tag Manager
+- [x] StatusCake
 
 ## 插件支持
 

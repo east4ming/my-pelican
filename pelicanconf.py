@@ -26,7 +26,9 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = ()
+LINKS = (
+    ('沪ICP备19007314号', 'http://www.miitbeian.gov.cn/'),
+)
 
 # Social widget
 SOCIAL = (('wechat', '/images/wechat_paycode.png'),
@@ -162,4 +164,3 @@ CUSTOM_CSS = 'static/custom.css'
 USE_LESS = True
 ARTICLE_HIDE_TRANSLATION = True
 COVER = '/devops_cover.png'
-
