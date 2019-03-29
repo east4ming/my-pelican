@@ -15,15 +15,15 @@ Related_posts: build-ide-on-tencentyun
 
 > :notebook: 说明:
 >
-> 因为我买的时候, CentOS最新只提供到7.3, 我希望使用CentOS 7.5. 看到镜像库里有(什么毛病, 买的时候为啥不提供), 所有重新安装下系统.
+> 因为我买的时候, CentOS最新只提供到7.3, 我希望使用CentOS 7.5. 看到镜像库里有(什么毛病, 买的时候为啥不提供:confused::confused::confused:), 所以重新安装下系统.
 
 1. 选中实例, 点击**更多**, 选择**重装系统**:
 
-   ![重装系统](./images/init_tencentyun_install_os_1.png)
+    ![重装系统](./images/init_tencentyun_install_os_1.png)
 
 2. 选择**公共镜像** -> **CentOS** -> **CentOS 7.5 64位** -> 输入root密码. 点击**开始重装**. 如下图:
 
-   ![重装系统具体选项](./images/init_tencentyun_install_os_2.png)
+    ![重装系统具体选项](./images/init_tencentyun_install_os_2.png)
 
 3. 等待重装完毕即可.
 
@@ -31,51 +31,51 @@ Related_posts: build-ide-on-tencentyun
 
 1. 点击**监控**图标:
 
-   ![点击监控](./images/init_tencentyun_monitor_1.png)
+    ![点击监控](./images/init_tencentyun_monitor_1.png)
 
 2. 有以下监控指标, 如下图, 点击**设置告警**:
 
-   1. CPU
-   2. 内存
-   3. 宽带(内外网)
-   4. 磁盘IO
-   5. 分区使用请看
+    1. CPU
+    2. 内存
+    3. 宽带(内外网)
+    4. 磁盘IO
+    5. 分区使用请看
 
-   ![设置告警](./images/init_tencentyun_monitor_2.png)
+    ![设置告警](./images/init_tencentyun_monitor_2.png)
 
 3. 根据自己的需要, 定制告警策略. 示例如下:
 
-   ![告警策略](./images/init_tencentyun_monitor_3.png)
+    ![告警策略](./images/init_tencentyun_monitor_3.png)
 
 4. 要配置告警通知渠道, 需要先**新增用户组**. 如下(我和其他人合用, 所以建立一个用户组还是有必要的):
 
-   ![新增用户组](./images/init_tencentyun_monitor_4.png)
+    ![新增用户组](./images/init_tencentyun_monitor_4.png)
 
 5. 新增用户组的操作如下, 先直接使用预设策略 - 管理员就可以了.
 
-   ![新增用户组](./images/init_tencentyun_groupuser_3.png)
+    ![新增用户组](./images/init_tencentyun_groupuser_3.png)
 
 6. 接下来关联到具体的用户组
 
-   ![关联接受组](./images/init_tencentyun_monitor_5.png)
+    ![关联接受组](./images/init_tencentyun_monitor_5.png)
 
 7. 点击**完成**, 配置完成后如下所示: (可以把默认的禁用掉了)
 
-   ![告警策略](./images/init_tencentyun_monitor_6.png)
+    ![告警策略](./images/init_tencentyun_monitor_6.png)
 
 ## 创建密钥并绑定主机
 
 1. 在**SSH密钥** 菜单, 点击**创建密钥**:
 
-   ![创建密钥](./images/init_tencentyun_key_1.png)
+    ![创建密钥](./images/init_tencentyun_key_1.png)
 
 2. 创建密钥(:exclamation:  密钥请妥善保存, 勿外传).
 
-   ![创建密钥](./images/init_tencentyun_key_2.png)
+    ![创建密钥](./images/init_tencentyun_key_2.png)
 
 3. 创建后, 先关闭主机(关闭后的主机才能绑定密钥, 很好, 关机也受到告警了👌), 再选择**绑定/解绑实例**, 如下图:
 
-   ![绑定实例](./images/init_tencentyun_key_3.png)
+    ![绑定实例](./images/init_tencentyun_key_3.png)
 
 ## 安全组配置
 
@@ -85,34 +85,34 @@ Related_posts: build-ide-on-tencentyun
 
 1. 点击**安全组** -> **新建**. 如下图:
 
-   ![新建安全组](./images/init_tencentyun_securegroup_1.png)
+    ![新建安全组](./images/init_tencentyun_securegroup_1.png)
 
 2. 选择**立即设置规则**. 具体原因如下图:
 
-   ![设置规则](./images/init_tencentyun_securegroup_2.png)
+    ![设置规则](./images/init_tencentyun_securegroup_2.png)
 
 3. 可以先关联到我自己的云主机实例. 如下图:
 
-   ![关联到实例](./images/init_tencentyun_securegroup_3.png)
+    ![关联到实例](./images/init_tencentyun_securegroup_3.png)
 
 4. 然后再配置出/入站规则, 先配置入站, 先选择**一键放通**. 放通以下:
 
-   1. Linux SSH登录: 22端口
-   2. Windows登录: 3389
-   3. ping: ICMP协议
-   4. HTTP: 80
-   5. HTTPS: 443
-   6. FTP: 20和21
+    1. Linux SSH登录: 22端口
+    2. Windows登录: 3389
+    3. ping: ICMP协议
+    4. HTTP: 80
+    5. HTTPS: 443
+    6. FTP: 20和21
 
-   ![一键放通入站](./images/init_tencentyun_securegroup_4.png)
+    ![一键放通入站](./images/init_tencentyun_securegroup_4.png)
 
 5. 再根据自己需要添加规则, 如下: (放通TCP的8000端口)
 
-   ![自定义规则](./images/init_tencentyun_securegroup_5.png)
+    ![自定义规则](./images/init_tencentyun_securegroup_5.png)
 
 6. 最后配置出站规则, 选择**一键放通**. 以后再慢慢细化, 如下:
 
-   ![一键放通出栈](./images/init_tencentyun_securegroup_6.png)
+    ![一键放通出栈](./images/init_tencentyun_securegroup_6.png)
 
    
 
@@ -128,9 +128,7 @@ Related_posts: build-ide-on-tencentyun
 
 2. 普通用户基于公钥登录: (因为之前**创建密钥并绑定主机**, 公钥已经存在于主机上了, 所以不需要keygen了, 直接复制就可以了)
 
-   ```shell
-   cp /root/.ssh/authorized_keys /home/casey/.ssh && chown -R casey:casey /home/casey/.ssh/
-   ```
+    `cp /root/.ssh/authorized_keys /home/casey/.ssh && chown -R casey:casey /home/casey/.ssh/`
 
 3. 确认基于ssh公钥的登录是否工作
 
@@ -208,32 +206,19 @@ sudo yum clean all -y  # 清理缓存
 
 1. 安装Git
 
-   ```shell
-   sudo yum install -y --setopt=tsflags=nodocs git
-   ```
+    `sudo yum install -y --setopt=tsflags=nodocs git`
 
 2. 配置git
 
-   ```shell
-   git config --global user.name "east4ming"
-   git config --global user.email "cuikaidong@foxmail.com"
-   ssh-keygen -t rsa -b 4096 -C "cuikaidong@foxmail.com"  # 已有私钥也可以重复使用
-   
-   ```
+    `git config --global user.name "east4ming"`
+    `git config --global user.email "cuikaidong@foxmail.com"`
+    `ssh-keygen -t rsa -b 4096 -C "cuikaidong@foxmail.com"  # 已有私钥也可以重复使用`
 
 3. `cat .ssh/id_rsa.pub` 并复制 (id_rsa.pub是对应的公钥信息)
-
 4. 打开github网页登入账户进入账户settings左边找到SSH，可以清理一下没用的SSH keys，然后新建一个 ，取名任意，粘贴进去cat产生的所有字符。保存即可。
-
 5. 缓存HTTPS方式的密码: 
 
-   ```shell
-   $ git config --global credential.helper 'cache --timeout=3600'
-   # Set the cache to timeout after 1 hour (setting is in seconds)
-   
-   ```
-
-   
+    `$ git config --global credential.helper 'cache --timeout=3600'  # Set the cache to timeout after 1 hour (setting is in seconds)`
 
 ### 优化配置shell
 

@@ -138,14 +138,10 @@ sudo systemctl enable docker
 
 3. 云服务器使用如下命令登录:
 
-   ```shell
-   sudo docker login --username=appid ccr.ccs.tencentyun.com
-   ```
+    `sudo docker login --username=appid ccr.ccs.tencentyun.com`
 
 4. 下载镜像:
 
-   ```shell
-   sudo docker pull ccr.ccs.tencentyun.com/[namespace]/[ImageName]:[镜像版本号]
-   ```
+    `sudo docker pull ccr.ccs.tencentyun.com/[namespace]/[ImageName]:[镜像版本号]`
 
    

@@ -112,4 +112,4 @@ cache/
 pelican-plugins/
 
 # .swp
-.swp
+*.swp

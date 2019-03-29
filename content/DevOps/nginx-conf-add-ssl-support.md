@@ -77,19 +77,22 @@ $ sudo mkdir -p /etc/pki/nginx/
 
 ```
 
-:notebook: 说明:
-
+> :notebook: 说明:
+>
 >  以上的某些指令, 我先大概介绍下, 后续会有文章做详细介绍.
+>
+> 1. `return 301 https://$host$request_uri;`   HTTP的全部永久重定向到https对应的URL
+> 2. `/usr/share/nginx/html `  静态博客的存放位置
+> 3. `ssl_session_timeout  1d; `  ssl session 超时时间为1天
+> 4. `ssl_session_tickets off;  # `  ssl session ticket 机制, 部分版本有bug, 视情况开启.
+> 5. `ssl_prefer_server_ciphers on;`  倾向于使用server端的ciphers
+> 6. HSTS功能:　添加个HTTP header, 告诉浏览器直接转到https, :exclamation:此功能有风险, 慎重选择.  (比如你的证书过期忘记续了, 那么用户想转到HTTP都没办法)
+> 7. `ssl_stapling on; `  启用ssl OCSP stapling功能, 服务端主动查询OCSP结果, 提高TLS握手效率
+> 8. `/etc/nginx/default.d/*.conf;`  我的博客`location`配置
+>
 
-1. `return 301 https://$host$request_uri;`   HTTP的全部永久重定向到https对应的URL
-2. `/usr/share/nginx/html `  静态博客的存放位置
-3. `ssl_session_timeout  1d; `  ssl session 超时时间为1天
-4. `ssl_session_tickets off;  # `  ssl session ticket 机制, 部分版本有bug, 视情况开启.
-5. `ssl_prefer_server_ciphers on;`  倾向于使用server端的ciphers
-6. HSTS功能:　添加个HTTP header, 告诉浏览器直接转到https, :exclamation:此功能有风险, 慎重选择.  (比如你的证书过期忘记续了, 那么用户想转到HTTP都没办法)
-7. `ssl_stapling on; `  启用ssl OCSP stapling功能, 服务端主动查询OCSP结果, 提高TLS握手效率
-8. `/etc/nginx/default.d/*.conf;`  我的博客`location`配置
-
+<br/>
+>
 > :notebook: 小技巧:
 >
 > 火狐浏览器背后的基金会, 开源了一个非常好用的工具: [ssl-config-generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/)
@@ -119,7 +122,7 @@ $ sudo systemctl reload nginx.service
 
 ![](./images/ssl-ewhisper.png)
 
-测试访问http://www.ewhisper.cn, 也会被强制转到 https://www.ewhisper.cn. 完美!
+测试访问http://www.ewhisper.cn, 也会被强制转到 https://www.ewhisper.cn. 完美!:tada::tada::tada:
 
 ## 我的SSL评级
 

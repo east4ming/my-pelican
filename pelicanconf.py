@@ -38,7 +38,7 @@ SOCIAL = (('wechat', '/images/wechat_paycode.png'),
           ('weibo', 'https://weibo.com/long5to2gf'),
           )
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 5
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
@@ -65,8 +65,11 @@ MARKDOWN = {
         'markdown.extensions.extra': {
             'markdown.extensions.footnotes': {},
             'markdown.extensions.fenced_code': {},
+	    'markdown.extensions.tables': {},
         },
         'markdown.extensions.meta': {},
+	'markdown.extensions.nl2br': {},
+	'markdown.extensions.sane_lists': {},
         'markdown.extensions.toc': {
             # 'anchorlink': True,
             'permalink': True,

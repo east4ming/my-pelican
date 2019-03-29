@@ -43,12 +43,10 @@ Related_posts: write-python-framework-part-one, write-python-framework-part-two
 >
 > 先安装2个库:
 >
-> ```shell
-> pip install requests
-> pip install requests-wsgi-adapter
-> ```
->
+> `pip install requests`
+> `pip install requests-wsgi-adapter`
 > 
+
 
 将以下方法添加到`api.py`主类`API`中：
 
