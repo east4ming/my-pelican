@@ -3,6 +3,7 @@ Category: DevOps
 Tags: DevOps
 Image: /images/DevOps_logo.png
 Related_posts: use-ansible-manage-multi-windows
+Summary: DevOps能力成熟度调查问卷. 一共9大板块, 73道题, 算是涵盖DevOps的方方面面了.
 
 [TOC]
 
