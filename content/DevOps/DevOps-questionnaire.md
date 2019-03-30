@@ -4,6 +4,8 @@ Tags: DevOps
 Image: /images/DevOps_logo.png
 Related_posts: use-ansible-manage-multi-windows
 
+[TOC]
+
 > :notebook: 问卷说明:
 >
 > 本问卷来自互联网.

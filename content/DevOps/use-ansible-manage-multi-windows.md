@@ -3,8 +3,10 @@ Author: 东风微鸣
 Category: DevOps
 Tags: ansible, windows, devops
 Summary: 在windows上安装winrm组件, Ansible通过winrm实现对windows的批量管理. 包括: 批量创建下发删除文件及目录、执行脚本、重启机器、管理用户、管理服务...
-Image: /images/ansible_logo.png
+Image: /images/ansible_logo_black-1024x138.png
 Related_posts: DevOps-questionnaire
+
+[TOC]
 
 ## 概述
 
@@ -35,7 +37,7 @@ sudo apt-add-repository --yes --update ppa:ansible/ansible
 sudo apt-get install ansible
 ```
 
-> :exclamation:
+> :exclamation:注意:
 >
 > 在较旧的Ubuntu发行版中，“software-properties-common”被称为“python-software-properties”。
 
@@ -51,7 +53,7 @@ sudo apt-get install ansible
 - Ansible需要**PowerShell 3.0**或更高版本，并且至少要在Windows主机上安装**.NET 4.0**。
 - 应创建并激活**WinRM listener **。更多细节可以在下面找到。
 
-> :exclamation:
+> :exclamation:注意:
 >
 > 虽然这些是Ansible连接的基本要求，但是一些Ansible模块还有其他要求，例如较新的OS或PowerShell版本。请参阅模块的文档页面以确定主机是否满足这些要求。
 
@@ -90,7 +92,7 @@ Remove-ItemProperty -Path $reg_winlogon_path -Name DefaultPassword -ErrorAction 
 
 该脚本的工作原理是检查需要安装哪些程序（例如.NET Framework 4.5.2）以及需要什么样的PowerShell版本。如果**需要重新启动**并且设置了`username`和`password`参数，则脚本将在重新启动时自动重新启动并登录。该脚本将继续，直到不再需要执行任何操作且PowerShell版本与目标版本匹配为止。如果未设置`username`和 `password`参数，脚本将提示用户手动重新引导并在需要时登录。当用户下次登录时，脚本将从停止的位置继续，并且该过程将继续，直到不再需要其他操作为止。
 
-> :exclamation:
+> :exclamation:注意:
 >
 > - 如果在Server 2008上运行，则必须安装SP2。如果在Server 2008 R2或Windows 7上运行，则必须安装SP1。
 > - Windows Server 2008只能安装PowerShell 3.0; 指定较新的版本将导致脚本失败。
@@ -127,7 +129,7 @@ $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 powershell.exe -ExecutionPolicy ByPass -File $file
 ```
 
-> :exclamation:
+> :exclamation:注意:
 >
 > ConfigureRemotingForAnsible.ps1脚本仅用于培训和开发目的，不应在生产环境中使用，因为它启用了`Basic` 这本质上不安全（如身份验证）。
 
@@ -269,6 +271,6 @@ $ ansible 192.168.2.2 -m win_copy -a 'src=/etc/hosts dest=D:\\hosts.txt'
 # ansible 192.168.2.2 -m win_shell -a “net stop|start zabbix_agent”
 ```
 
-> :notebook:
+> :notebook:说明:
 >
 > 完整的windows module见: [Windows modules](https://docs.ansible.com/ansible/latest/modules/list_of_windows_modules.html)

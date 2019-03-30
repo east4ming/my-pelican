@@ -6,6 +6,8 @@ Image: /images/green_apple.png
 Summary: 苹果ATS合规对Web服务器的影响. 为保证合规, Apache httpd, NGINX和WebLogic应该如何配置.
 Related_posts: tencentyun-apply-ssl-certificate, nginx-conf-add-ssl-support
 
+[TOC]
+
 ## 一 前言
 
 > :notebook: 说明:
@@ -30,7 +32,9 @@ Related_posts: tencentyun-apply-ssl-certificate, nginx-conf-add-ssl-support
     9. TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
     10. TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
     11. TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+
 3. Leaf server（设备服务器）证书必须使用以下类型的密钥之一签名
+
     1. Rivest-Shamir-Adleman (RSA)秘钥，长度至少为2048位
     2. Elliptic-Curve Cryptography (ECC) 秘钥，长度至少为256位
     3. 此外，leaf server证书散列算法必须是具有至少256（即SHA-256或更大）的摘要长度（有时称为“指纹”）的安全散列算法2（SHA-2）。
