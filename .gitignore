@@ -113,3 +113,6 @@ pelican-plugins/
 
 # .swp
 *.swp
+
+# vscode
+*.code-workspace
