@@ -1,5 +1,3 @@
-# 使用 Ansible 批量管理 Windows
-
 Title: 使用 Ansible 批量管理 Windows
 Author: 东风微鸣
 Category: DevOps
