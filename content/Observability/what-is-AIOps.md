@@ -2,7 +2,7 @@ Title: 什么是 AIOps?
 Category: Observability
 Tags: gartner, aiops, 可观察性, 大数据, 机器学习
 Summary: AIOps平台通过结合大数据, 机器学习和可视化, 通过更深入的分析洞察来增强IT运营. IT领导应该启动AIOps部署, 以优化当前的性能分析, 并在未来两到五年扩展到IT服务管理和自动化.
-Images: /images/What-is-AIOps.png
+Image: /images/What-is-AIOps.png
 
 [TOC]
 
