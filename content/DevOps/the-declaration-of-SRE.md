@@ -34,7 +34,7 @@ Image: /images/SiteReliabilityEngineer.png
 > 至关重要的是, SRE 团队可以拒绝不符合运维标准的软件(包括开发分部和运维分部的软件), 要求开发人员在投入生产之前改进代码. Dev 和 SRE之间的协作围绕着**运维标准**展开, 但是, 一旦 SRE 团队对代码满意, 他们(而不是Dev团队)就会在生产环境中提供支持.
 > 
 > 这个模型只适用于工程和组织成熟度较高的组织, 如果运行不当, 可能变为 "Dev 和 Ops筒仓"的模式.
-> 节选自: ![DevOps团队结构类型汇总：总有一款适合你](https://www.infoq.cn/article/DcIUD_gi17sQjvSt5XSS)
+> 节选自: [DevOps团队结构类型汇总：总有一款适合你](https://www.infoq.cn/article/DcIUD_gi17sQjvSt5XSS)
 
 ![SRE模型](./images/devops-models-type-7.png)
 

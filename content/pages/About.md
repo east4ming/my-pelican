@@ -2,7 +2,7 @@ Title: About
 
 :smile::smile::smile: 欢迎来到我的博客！我的名字是东风微鸣。
 
-我是某保险公司的一名[SRE](https://github.com/east4ming) ~~不再是一名传统的运维~~，毕业于[南京航空航天大学](http://www.nuaa.edu.cn/)，是个书呆子，和电影爱好者。
+我是某保险公司的一名[SRE](https://github.com/east4ming) (~~不再是一名传统的运维~~)，毕业于[南京航空航天大学](http://www.nuaa.edu.cn/)，是个书呆子，和电影爱好者。
 
 作为一名运维人员，我主要负责Java 中间件的运维工作和监控相关的工作。同时也在学习和使用 Python。随着开源技术和万物软件化的冲击，传统保险行业也开始积极进行技术转型，最近我大部分时间都在参与DevOps和可观察性方面的工作。因此，在我的日常工作中，我使用的是Java，Python，Zabbix，Dynatrace，Docker，Kubernetes，OpenShift，Ansible，公有云（AWS等）和私有云。
 
