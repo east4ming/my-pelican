@@ -17,7 +17,7 @@ Summary: Dynatrace AppMon 实战手册系列文章. 本文是第七篇, 主要�
         ![与agent名字匹配](./images/appmon-install-agent-3.png)
     2. ▽ 高级设置：取消自动生成heapdump，将解析度设为最低，降低系统开销：
         ![高级设置](./images/appmon-install-agent-4.png)
-4. 设置放置哪些传感器 ▽ 根据实际需要选定传感器种类：
+4. ▽ 设置放置哪些传感器, 根据实际需要选定传感器种类：
     ![传感器种类](./images/appmon-install-agent-5.png)
 5. 配置上一步放置的传感器的属性
     ![传感器属性](./images/appmon-install-agent-6.png)
@@ -30,7 +30,7 @@ Summary: Dynatrace AppMon 实战手册系列文章. 本文是第七篇, 主要�
 
 其他传感器默认设置即可。
 
-## 二 安装 Agent
+## 安装 Agent
 
 > :notebook:说明:
 > 此处以**dynatrace appmon 6.2**版本举例, 请根据实际情况换成对应版本的安装包.

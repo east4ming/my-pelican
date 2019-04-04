@@ -9,7 +9,7 @@ Summary: Dynatrace AppMon 实战手册系列文章. 本文是第八篇, 主要�
 ## 新增主机组
 
 ▽ 编辑系统配置文件--基础结构--创建
-![基础结构](./images/appmon-add-application-1)
+![基础结构](./images/appmon-add-application-1.png)
 
 ▽ 输入主机组名称
 ![主机组](./images/appmon-add-application-2.png)
