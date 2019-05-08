@@ -3,7 +3,6 @@ Status: published
 Tags: openshift, docker, devops, git, containers
 Author: 东风微鸣
 Summary: OpenShift 推荐和常用的构建方式是: 直接从代码仓库(如GIT 或SVN)中拉取源码进行构建(即源码构建). 但是这一种构建方式并不能满足所有的需求, 所以还有一种构建方式就是: 二进制构建. 二进制构建适用于以下2个场景: 1.开发人员本地开发调试代码并构建; 2. OpenShift和 CI/CD的pipeline进行整合, 获取从前边平台(如自动化开发平台或测试平台)传过来的工件(即二进制包)并构建为镜像.
-Image: /images/
 Related_posts: openshift-and-kubernetes-whats-difference
 
 [TOC]
@@ -49,33 +48,31 @@ OpenShift中的二进制构建功能允许开发人员将源代码或工件直�
 
 1. 基于现有源存储库创建新应用程序并为其创建路由：
 
-    ```
-    $ oc new-app https://github.com/openshift/ruby-hello-world.git
-    $ oc expose svc/ruby-hello-world
-    ```
+```shell
+oc new-app https://github.com/openshift/ruby-hello-world.git
+oc expose svc/ruby-hello-world
+```
 
 2. 等待初始构建完成并通过route来查看应用程序的页面。你应该得到一个欢迎页面：
 
-    ```
-    $ oc get route ruby-hello-world
-    ```
+```shell
+oc get route ruby-hello-world
+```
 
 3. 在本地克隆存储库：
 
-    ```
-    $ git clone https://github.com/openshift/ruby-hello-world.git
-    $ cd ruby-hello-world
-    ```
+```shell
+git clone https://github.com/openshift/ruby-hello-world.git
+cd ruby-hello-world
+```
 
 4. 更改应用程序的视图。使用您喜欢的编辑器编辑 `views/main.rb`：将`<body>`标签更改为`<body style="background-color:blue">`。
 
 5. 使用本地修改的源启动新构建。在存储库的本地目录中，运行：
 
-    ```
-    ----
-    $ oc start-build ruby-hello-world --from-dir="." --follow
-    ----
-    ```
+```shell
+oc start-build ruby-hello-world --from-dir="." --follow
+```
 
 构建完成并重新部署应用程序后，指向应用程序主机的route应该会生成一个蓝色背景的页面。
 
@@ -83,72 +80,69 @@ OpenShift中的二进制构建功能允许开发人员将源代码或工件直�
 
 您还可以创建代码分支，在本地提交更改，并使用存储库的HEAD作为构建的源：
 
-```
-$ git checkout -b my_branch
-$ git add .
-$ git commit -m "My changes"
-$ oc start-build ruby-hello-world --from-repo="." --follow
+```shell
+git checkout -b my_branch
+git add .
+git commit -m "My changes"
+oc start-build ruby-hello-world --from-repo="." --follow
 ```
 
 ### 教程：构建私有代码
 
 1. 创建一个本地目录来保存您的代码：
 
-    ```
-    $ mkdir myapp
-    $ cd myapp
-    ```
+```shell
+mkdir myapp
+cd myapp
+```
 
 2. 在目录中创建一个名为`Dockerfile`的文件：
 
-    ```
-    FROM centos:centos7
- 
-    EXPOSE 8080
- 
-    COPY index.html /var/run/web/index.html
- 
-    CMD cd /var/run/web && python -m SimpleHTTPServer 8080
-    ```
+```Dockerfile
+FROM centos:centos7
+EXPOSE 8080
+COPY index.html /var/run/web/index.html
+CMD cd /var/run/web && python -m SimpleHTTPServer 8080
+```
 
 3. 创建一个`index.html`文件：
 
-    ```
-    <html>
-      <head>
-        <title>My local app</title>
-      </head>
-      <body>
-        <h1>Hello World</h1>
-        <p>This is my local application</p>
-      </body>
-    </html>
-    ```
+```html
+<html>
+  <head>
+    <title>My local app</title>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <p>This is my local application</p>
+  </body>
+</html>
+```
 
 4. 为您的应用程序创建一个新的构建：
 
-    ```
-    $ oc new-build --strategy docker --binary --docker-image centos:centos7 --name myapp
-    ```
+```shell
+oc new-build --strategy docker --binary --docker-image centos:centos7 --name myapp
+```
 
 5. 使用本地目录的内容启动二进制构建：
 
-    ```
-    $ oc start-build myapp --from-dir . --follow
-    ```
+```shell
+oc start-build myapp --from-dir . --follow
+```
 
 6. 使用`new-app`部署应用程序，然后为其创建路由：
 
-    ```
-    $ oc new-app myapp
-    $ oc expose svc/myapp
-    ```
+```shell
+oc new-app myapp
+oc expose svc/myapp
+```
 
 7. 获取指向对应应用主机的路由：
 
-    ```
-    $ oc get route myapp
-    ```
+```shell
+oc get route myapp
+```
 
 在构建和部署代码之后，您可以通过更改本地文件并通过`oc start-build myapp --from-dir`再次调用启动新构建来进行迭代。构建完成后，代码将自动部署，更新的内容将在刷新页面时反映在浏览器中。
 
@@ -158,95 +152,96 @@ OpenShift上的Jenkins允许使用带有合适工具的slave镜像来构建代�
 
 1. 为您的应用程序创建一个新目录：
 
-    ```
-    $ mkdir mavenapp
-    $ cd mavenapp
-    ```
+```shell
+mkdir mavenapp
+cd mavenapp
+```
 
 2. 创建一个`Dockerfile`将WAR复制到wildfly镜像内的适当位置以供执行。将以下内容复制到名为的本地文件 `Dockerfile`：
 
-    ```
-    FROM wildfly:latest
-    COPY ROOT.war /wildfly/standalone/deployments/ROOT.war
-    CMD  $STI_SCRIPTS_PATH/run
-    ```
+```Dockerfile
+FROM wildfly:latest
+COPY ROOT.war /wildfly/standalone/deployments/ROOT.war
+CMD  $STI_SCRIPTS_PATH/run
+```
 
 3. 为该`Dockerfile`创建一个新的BuildConfig：
 
-    > :exclamation:
-    >
-    >   这将自动启动一个构建, 刚开始会构建失败，因为 `ROOT.war`工件尚不可用。下面的pipeline将使用二进制构建将该WAR包传递给构建。
+> :exclamation:
+>
+> 这将自动启动一个构建, 刚开始会构建失败，因为 `ROOT.war`工件尚不可用。下面的pipeline将使用二进制构建将该WAR包传递给构建。
 
-    ```
-    $ cat Dockerfile | oc new-build -D - --name mavenapp
-    ```
+```shell
+cat Dockerfile | oc new-build -D - --name mavenapp
+```
 
 4. 创建1个使用Jenkins pipeline的BuildConfig, 这个BuildConfig将构建1个WAR包，然后使用该WAR包和先前创建的`Dockerfile`来构建镜像。相同的模式可用于其他平台，其中二进制工件由一组工具构建，然后与最终的包含不同运行时的镜像组合。将以下代码保存到`mavenapp-pipeline.yml`：
 
-    ```
-    apiVersion: v1
-    kind: BuildConfig
-    metadata:
-      name: mavenapp-pipeline
-    spec:
-      strategy:
-        jenkinsPipelineStrategy:
-          jenkinsfile: |-
-            pipeline {
-              agent { label "maven" }
-              stages {
-                stage("Clone Source") {
-                  steps {
-                    checkout([$class: 'GitSCM',
-                                branches: [[name: '*/master']],
-                                extensions: [
-                                  [$class: 'RelativeTargetDirectory', relativeTargetDir: 'mavenapp']
-                                ],
-                                userRemoteConfigs: [[url: 'https://github.com/openshift/openshift-jee-sample.git']]
-                            ])
-                  }
-                }
-                stage("Build WAR") {
-                  steps {
-                    dir('mavenapp') {
-                      sh 'mvn clean package -Popenshift'
-                    }
-                  }
-                }
-                stage("Build Image") {
-                  steps {
-                    dir('mavenapp/target') {
-                      sh 'oc start-build mavenapp --from-dir . --follow'
-                    }
-                  }
+```yaml
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: mavenapp-pipeline
+spec:
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfile: |-
+        pipeline {
+          agent { label "maven" }
+          stages {
+            stage("Clone Source") {
+              steps {
+                checkout([$class: 'GitSCM',
+                            branches: [[name: '*/master']],
+                            extensions: [
+                              [$class: 'RelativeTargetDirectory', relativeTargetDir: 'mavenapp']
+                            ],
+                            userRemoteConfigs: [[url: 'https://github.com/openshift/openshift-jee-sample.git']]
+                        ])
+              }
+            }
+            stage("Build WAR") {
+              steps {
+                dir('mavenapp') {
+                  sh 'mvn clean package -Popenshift'
                 }
               }
             }
-        type: JenkinsPipeline
-      triggers: []
-    ```
+            stage("Build Image") {
+              steps {
+                dir('mavenapp/target') {
+                  sh 'oc start-build mavenapp --from-dir . --follow'
+                }
+              }
+            }
+          }
+        }
+    type: JenkinsPipeline
+  triggers: []
+```
 
 5. 创建pipeline 构建。如果Jenkins未部署到您的项目中，则使用管道创建的BuildConfig会先部署Jenkins。在Jenkins准备建立您的管道之前可能需要几分钟来启动。您可以通过调用`oc rollout status dc/jenkins`来检查Jenkins的状态：
 
-    ```
-    $ oc create -f ./mavenapp-pipeline.yml
-    ```
+```shell
+oc create -f ./mavenapp-pipeline.yml
+```
 
 6. 一旦Jenkins准备就绪，启动之前定义的管道：
 
-    ```
-    $ oc start-build mavenapp-pipeline
-    ```
+```shell
+oc start-build mavenapp-pipeline
+```
 
 7. 管道构建完成后，使用`new-app`部署新应用程序并公开其route：
 
-    ```
-    $ oc new-app mavenapp
-    $ oc expose svc/mavenapp
-    ```
+```shell
+oc new-app mavenapp
+oc expose svc/mavenapp
+```
 
 8. 使用浏览器，导航到应用程序的路径：
 
-    ```
-    $ oc get route mavenapp
-    ```
+```shell
+oc get route mavenapp
+```
+
