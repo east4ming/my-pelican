@@ -268,3 +268,11 @@ MIT License
 ### docutils localization
 
 - Change `DEFAULT_LANG = 'zh_CN'`
+
+## Develop
+
+### 20190510
+
+- 调整publish的dest dir为: `/home/casey/my-tencentyun-nginx/pelican-output` (TODO:同步到master分支)
+r
+### 
