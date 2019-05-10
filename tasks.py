@@ -12,7 +12,8 @@ CONFIG = {
     'deploy_path': 'output',
     # Remote server configuration
     # 'production': 'casey@212.64.107.120:22',
-    'dest_path': '/usr/share/nginx/html',
+    #'dest_path': '/usr/share/nginx/html',
+    'dest_path': '/home/casey/my-tencentyun-nginx/pelican-output',
     # Port for `serve`
     'port': 8000,
 }

@@ -11,7 +11,8 @@ PUBLISHCONF=$(BASEDIR)/publishconf.py
 SSH_HOST=212.64.107.120
 SSH_PORT=22
 SSH_USER=casey
-SSH_TARGET_DIR=/usr/share/nginx/html
+#SSH_TARGET_DIR=/usr/share/nginx/html
+SSH_TARGET_DIR=/home/casey/my-tencentyun-nginx/pelican-output
 
 
 DEBUG ?= 0
