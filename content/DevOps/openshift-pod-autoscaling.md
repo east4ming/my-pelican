@@ -85,8 +85,9 @@ spec:
     targetCPUUtilizationPercentage: 80 
 ```
 
-| metadata.name                  | 这个horizontal pod autoscaler 对象的名字 |
+| 参数                           | 说明                                     |
 | ------------------------------ | ---------------------------------------- |
+| metadata.name                  | 这个horizontal pod autoscaler 对象的名字 |
 | kind                           | 要伸缩的对象类型                         |
 | scaleTargetRef.name            | 要伸缩的对象的名称                       |
 | scaleTargetRef.apiVersion      | 要扩展的对象的API版本                    |
@@ -115,8 +116,9 @@ spec:
       targetAverageUtilization: 50 
 ```
 
-| metadata.name             | 这个horizontal pod autoscaler 对象的名字 |
+| 参数                      | 说明                                     |
 | ------------------------- | ---------------------------------------- |
+| metadata.name             | 这个horizontal pod autoscaler 对象的名字 |
 | scaleTargetRef.apiVersion | 要扩展的对象的API版本                    |
 | kind                      | 要扩展的对象类型                         |
 | scaleTargetRef.name       | 要缩放的对象的名称                       |
@@ -159,8 +161,9 @@ spec:
       targetAverageUtilization: 50 
 ```
 
-| metadata.name             | 这个horizontal pod autoscaler 对象的名字 |
+| 参数                      | 说明                                     |
 | ------------------------- | ---------------------------------------- |
+| metadata.name             | 这个horizontal pod autoscaler 对象的名字 |
 | scaleTargetRef.apiVersion | 要扩展的对象的API版本                    |
 | kind                      | 要扩展的对象类型                         |
 | scaleTargetRef.name       | 要缩放的对象的名称                       |
@@ -219,9 +222,9 @@ Conditions:
   ScalingLimited        False   DesiredWithinRange      the desired replica count is within the acceptable range
 Events:
 ```
-
+| 参数                    | 说明                                     |
+| ----------------------- | ---------------------------------------- |
 | Target CPU utilization  | 每个pod应使用的请求内存的平均百分比。                        |
-| ----------------------- | ------------------------------------------------------------ |
 | Current CPU utilization | 由部署配置(deployment configuration)控制的所有pod的当前CPU利用率。 |
 | Min replicas            | 要缩小到的最小副本数                                         |
 | Max replicas            | 要扩展到的最大副本数                                         |
