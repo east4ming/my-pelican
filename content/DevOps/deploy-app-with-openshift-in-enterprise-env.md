@@ -15,7 +15,7 @@ Image: /images/illustration-com-container-party.png
 
 ### 禅道简介
 
-**[禅道](^1)是专业的研发项目管理软件**
+**禅道[^1]是专业的研发项目管理软件**
 
 - 细分需求、任务、缺陷和用例
 - 完整覆盖研发项目核心流程
@@ -47,11 +47,9 @@ Image: /images/illustration-com-container-party.png
     2. 创建"禅道" 路由(route)
     3. 添加DNS记录.
 
-[^1]: https://www.zentao.net
-
 ### 具体步骤
 
-#### Dockerfile 构建镜像并导出
+#### 1-1 Dockerfile 构建镜像并导出
 
 > :notebook: 说明:
 >
@@ -129,7 +127,7 @@ docker stop zentao-test  # 测试完毕, 停止该容器
 docker save -o docker_zentao.tar zentao
 ```
 
-#### 上传并导入docker 镜像
+#### 1-2 上传并导入docker 镜像
 
 > :notebook: 说明:
 >
@@ -147,15 +145,16 @@ docker push txocp-registry.example.com/ewhisper/zentao
 
 
 
-#### 创建"禅道" - **zentao** 项目
+#### 2-1 创建"禅道" - **zentao** 项目
 
-> :notebook: 说明:
+> :notebook: 说明1:
 >
 > "项目"(project) 是OpenShift中的概念, project可以理解为对应K8S的`namespace`. 通过这个实现了多租户的隔离.
 >
 > 所以每启动一个新项目, 就应该在OpenShift上创建一个单独的项目.
 
-> :notebook: 说明
+
+> :notebook: 说明2:
 >
 > (可选) 指定该项目只能被调度到特定主机上;
 >
@@ -172,7 +171,7 @@ oc adm new-project zentao \
 
 `kubernetes.io/hostname=txocp.node02.example.com` 前边的`xxxhostname`是条件, 即根据hostname 调度, 后边的是判定. 总的来说, 即该项目要被调度到:hostname为`txocp.node02.example.com`的节点. (该节点肯定只有一个). 
 
-##### 创建OpenShift useroot 服务账户
+##### 2-1-1 创建OpenShift useroot 服务账户
 
 > :notebook: 说明:
 >
@@ -198,7 +197,7 @@ oc patch dc/zentao --patch '{"spec":{"template":{"spec":{"serviceAccountName": "
 
 4. 此后, 容器内就可以通过root运行.
 
-#### 创建"禅道" - zentao 应用
+#### 2-2 创建"禅道" - zentao 应用
 
 > :notebook: 说明:
 >
@@ -235,7 +234,7 @@ oc new-app --name=zentao \
 
 后续来一一解决这2个问题. 首先解决数据没有持久化的问题.
 
-#### 持久化应用和数据库数据
+#### 2-3 持久化应用和数据库数据
 
 > :notebook: 说明:
 >
@@ -274,7 +273,7 @@ oc create -f scc-hostpath.yaml
 oc patch scc hostpath -p '{"allowHostDirVolumePlugin": true}'
 ```
 
-4. 把`hostpath`这个SCC赋权给所有用户: (`system:authenticated` 就是所有用户)
+4. 把`hostpath`这个SCC赋权给所有用户: (`system:authenticated` 就是所有用户)
 
 ```bash
 oc adm policy add-scc-to-group hostpath system:authenticated
@@ -437,7 +436,7 @@ status:
 
 之后, pod会自动进行重启, 把对应的数据通过`hostPath` 挂载到本地目录来实现持久化.
 
-#### 创建"禅道" 服务(service)
+#### 3-1 创建"禅道" 服务(service)
 
 > :notebook: 说明:
 >
@@ -449,7 +448,7 @@ oc expose dc zentao --port=80
 
 把 zentao 应用的http服务端口80 暴露给OpenShift集群内部. (会创建一个叫 zentao 的 svc)
 
-#### 创建"禅道" 路由(route)
+#### 3-2 创建"禅道" 路由(route)
 
 > :notebook: 说明:
 >
@@ -461,15 +460,16 @@ oc expose svc zentao --hostname="zentao.apps.example.com"
 
 通过上边的命令, 就创建了一条路由, 实现了通过`zentao.apps.example.com` 访问到 "禅道" 项目管理工具首页. (如果不加`--hostname`, 默认的hostname前缀为`appname-projectname`, 即"zentao-zentao")
 
-至此, 我们就可以通过域名访问 "禅道" 页面​, ​而​我们​使用​的​数据​也会​保留在​指定​的​node​节点​上.​ :tada::tada::tada:
 
-![禅道首页](./images/zentao_openshift.png)
-
-#### 添加DNS记录
+#### 3-3 添加DNS记录
 
 由于我们企业的OpenShift 测试环境DNS 的客观情况. 无法实现泛解析, 所以还需要请相关专业组手动添加DNS记录. 办公电脑添加DNS测试域等操作. 
 
 做完这些操作后, 才能通过域名访问到禅道系统.
+
+至此, 我们就可以通过域名访问 "禅道" 页面​, ​而​我们​使用​的​数据​也会​保留在​指定​的​node​节点​上.​ :tada::tada::tada:
+
+![禅道首页](./images/zentao_openshift.png)
 
 ## 总结
 
@@ -481,3 +481,5 @@ oc expose svc zentao --hostname="zentao.apps.example.com"
 - 应用通过域名发布出来, 还需要经过域控或F5或个人电脑进行进一步配置才能生效. 后续可以考虑:
     - 配置某二级域名的泛解析, 实现相关域名的自动发布. 
     - 更进一步, 可以考虑OpenShift直接和F5深度整合, 将F5作为其router使用. (当前是: F5 -> HAProxy(router) )
+
+[^1]: https://www.zentao.net
