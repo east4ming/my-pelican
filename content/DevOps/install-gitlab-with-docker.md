@@ -140,49 +140,49 @@ sudo docker run --detach \
 
 2. 运行`oc cluster status`并确认群集正在运行：
 
-    ```bash
-    oc cluster status
-    ```
+```bash
+oc cluster status
+```
 
     输出应类似于：
 
-    ```
-     Web console URL: https://gitlab.example.com:8443/console/
+```
+Web console URL: https://gitlab.example.com:8443/console/
     
-     Config is at host directory
-     Volumes are at host directory
-     Persistent volumes are at host directory /home/okduser/openshift/openshift.local.clusterup/openshift.local.pv
-     Data will be discarded when cluster is destroyed
-    ```
+Config is at host directory
+Volumes are at host directory
+Persistent volumes are at host directory /home/okduser/openshift/openshift.local.clusterup/openshift.local.pv
+Data will be discarded when cluster is destroyed
+```
 
     请注意主机中Persistent Volumes的位置（在上例中`/home/okduser/openshift/openshift.local.clusterup/openshift.local.pv`）。以下命令需要`PV_HOST_DIRECTORY`环境变量中的路径。
 
 3. 修改PV目录的权限（用以上值替换以下命令中的路径）：
 
-    ```bash
-    sudo chmod -R a+rwx ${PV_HOST_DIRECTORY}/*
-    ```
+```bash
+sudo chmod -R a+rwx ${PV_HOST_DIRECTORY}/*
+```
 
 4. 切换到系统管理员用户：
 
-    ```bash
-    oc login -u system:admin
-    ```
+```bash
+oc login -u system:admin
+```
 
 5. 将`anyuid`scc 添加到系统用户：
 
-    ```bash
-    oc adm policy add-scc-to-group anyuid system:authenticated
-    ```
+```bash
+oc adm policy add-scc-to-group anyuid system:authenticated
+```
 
     **警告**：此设置将应用于所有namespace，并将导致Docker镜像未明确指定USER作为`root`用户运行。 [问题＃895](https://gitlab.com/charts/gitlab/issues/895)是开放的，用于记录所需的不同服务帐户，并描述仅将scc添加到这些服务帐户，因此影响可能有限。
 
 6. 创建服务帐户和`rolebinding`RBAC并[安装Tiller](https://docs.gitlab.com/charts/installation/tools.html#helm)：
 
-    ```bash
-    kubectl create -f https://gitlab.com/charts/gitlab/raw/master/doc/installation/examples/rbac-config.yaml
-     helm init --service-account tiller
-    ```
+```bash
+kubectl create -f https://gitlab.com/charts/gitlab/raw/master/doc/installation/examples/rbac-config.yaml
+helm init --service-account tiller
+```
 
 ### 下一步
 
@@ -192,14 +192,15 @@ sudo docker run --detach \
 
 1. 我们将使用OpenShift的内置router，因此需要禁用chart中包含的nginx-ingress服务。将以下标志传递给`helm install`命令：
 
-    ```bash
-    --set nginx-ingress.enabled=false
-    ```
+```bash
+--set nginx-ingress.enabled=false
+```
 
 2. 由于已知内置注册表不能使用Helm Chart与OpenShift一起使用，因此请禁用注册表服务。将以下标志传递给 `helm install`命令：
 
-    ```
-    --set registry.enabled=false
-    ```
+```
+--set registry.enabled=false
+```
 
 3. [使用您自己的SSL证书](https://docs.gitlab.com/charts/installation/tls.html#option-2-use-your-own-wildcard-certificate)
+
