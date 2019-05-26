@@ -56,6 +56,8 @@ MIT License
 - [x] 选择并安装插件. 如: 图片插件等. [optimize_images](https://github.com/getpelican/pelican-plugins/tree/master/optimize_images) 和 [representative_image](https://github.com/getpelican/pelican-plugins/tree/master/representative_image)
 - [x] 选择并安装主题, 如: 大小屏适配, 淡雅主题.
 - [ ] 创建content批量倒入工具
+- [ ] 增量生成html
+- [ ] `pelican.conf`和`publish.conf`的输出目录分开
 
 ## Feature
 
