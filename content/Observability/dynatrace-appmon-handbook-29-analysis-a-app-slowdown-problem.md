@@ -16,11 +16,11 @@ Summary: Dynatrace AppMon 实战手册系列文章. 本文是第二十九篇, �
 >
 > 另外也观察到数据库响应时间过长，达到了8s之久。
 
-![](http://i.imgur.com/4Y8dT5h.png)
+![](./images/Snipaste_2019-06-19_19-49-15.png)
 
 2. 分析第一个红色告警，主要是**事务失败率过高**。
 
-![](http://i.imgur.com/DNajWDf.png)
+![](./images/Snipaste_2019-06-19_19-50-04.png)
 
 3. 查看相关的报错，可以看到主要是**数据库相关**异常报错。
 
@@ -30,7 +30,7 @@ Summary: Dynatrace AppMon 实战手册系列文章. 本文是第二十九篇, �
 >
 > DBA已经在杀SQL了
 
-![](http://i.imgur.com/2fvqoTP.png)
+![](./images/Snipaste_2019-06-19_19-50-34.png)
 
 4. 再查看第二个红色告警，可以看到：
 
@@ -38,7 +38,7 @@ Summary: Dynatrace AppMon 实战手册系列文章. 本文是第二十九篇, �
 >
 > **连接池满**
 
-![](http://i.imgur.com/kcM1wL1.png)
+![](./images/Snipaste_2019-06-19_19-51-02.png)
 
 5. 查看数据库的相关情况，具体如下：
 
@@ -46,23 +46,23 @@ Summary: Dynatrace AppMon 实战手册系列文章. 本文是第二十九篇, �
 >
 > **tpl2a**平均获取时间12s。
 
-![](http://i.imgur.com/8qMFwtz.png)
+![](./images/Snipaste_2019-06-19_19-51-35.png)
 
 6. 找出相关的**执行次数多、平均执行时间长**的sql语句。如下图：
 
-![](http://i.imgur.com/y3gzIpd.png)
+![](./images/Snipaste_2019-06-19_19-51-55.png)
 
 7. 从对应sql直接转到相关请求，从下图可以看出事务来自客户端：**10.94.21.23**。（这个是**微信平台系统**的一个server地址）。联系微信后，知道对方在**搞活动**。
 
-![](http://i.imgur.com/qaokxWf.png)
+![](./images/Snipaste_2019-06-19_19-52-18.png)
 
 8. 最后也可以看一下这条web请求的相关信息：（吞吐量中**绿色面积**是根据历史数据计算出来的正常吞吐量区间范围，可以看到因为做活动，**吞吐量飙涨，远远大于历史基线**。而且可以看出活动高峰期是在8:00-9:00）
 
-![](http://i.imgur.com/1zE3VLF.png)
+![](./images/Snipaste_2019-06-19_19-52-38.png)
 
 9. 再看一下**最慢响应时间的基线**，如下图：**基线时间准确到2669ms，但是活动高峰期响应时间高出了近50s！**
 
-![](http://i.imgur.com/YBymnDC.png)
+![](./images/Snipaste_2019-06-19_19-52-57.png)
 
 ### 总结
 
