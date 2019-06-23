@@ -1,7 +1,7 @@
 Title: NGINX 实战手册-运维-使用GeoIP模块通过IP地址定位用户
 Category: DevOps
 Date: 2019-06-19 20:39
-Tags: nginx, devops, 译文, 最佳实践, docker
+Tags: nginx, devops, 译文, 最佳实践
 Summary: NGINX 实战手册系列文章的运维部分. 本文主要介绍如何使用GeoIP模块通过IP地址定位用户.
 Image: /images/docker_nginx-750x410.png
 
