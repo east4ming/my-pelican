@@ -110,9 +110,11 @@ venv.bak/
 output/
 cache/
 pelican-plugins/
+output-test/
 
 # .swp
 *.swp
 
 # vscode
 *.code-workspace
+pelican-plugins
