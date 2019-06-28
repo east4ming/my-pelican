@@ -81,7 +81,7 @@ ssh_upload: publish
 	scp -P $(SSH_PORT) -r $(OUTPUTDIR)/* $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)
 
 rsync_upload: publish
-	sudo rsync -pthrvc --cvs-exclude --delete $(OUTPUTDIR)/ $(SSH_TARGET_DIR)
+	rsync -pthrvc --cvs-exclude --delete $(OUTPUTDIR)/ $(SSH_TARGET_DIR)
 
 
 .PHONY: html help clean regenerate serve serve-global devserver stopserver publish ssh_upload rsync_upload
