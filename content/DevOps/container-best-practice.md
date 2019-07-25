@@ -2,7 +2,6 @@ Title: 容器最佳实践
 Status: published
 Tags: python, java, openshift, docker, 最佳实践, k8s, containers
 Date: 2019-07-25 17:00
-Modified: 
 Author: 东风微鸣
 Slug: container-best-practices
 Summary: 这篇文章主要是翻译自OpenShift关于镜像的最佳实践, 同时结合我看到的其他关于镜像最佳实践的文章, 以及我日常工作中的体会总结出来的. 包括通用的容器最佳实践, java, nginx, python容器最佳实践以及OpenShift上容器最佳实践. 最佳实践的目的一方面是为了提升DevOps效率, 另一方面是为了提高安全性. 希望对各位有所帮助.
