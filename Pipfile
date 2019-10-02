@@ -7,6 +7,7 @@ verify_ssl = true
 pydocstyle = "*"
 pylint = "*"
 pep8 = "*"
+autopep8 = "*"
 
 [packages]
 markdown = "*"
