@@ -2,6 +2,7 @@ Title: 如何在 OpenShift 中运行 Collabora Office
 Status: published
 Tags: k8s, openshift, containers, 安全, 
 Date: 2019-10-03 18:00
+Modified: 2019-10-03 20:00
 Author: 东风微鸣
 Slug: how-to-run-container-with-su-in-openshift
 Summary: 近期在尝试 office 文档在线编辑和预览的一些解决方案, 目前在使用Collabora Office, 但是在OpenShift中运行不起来, 快看看是怎么解决的吧.
@@ -120,7 +121,7 @@ su -c "/usr/bin/loolwsd --version --o:sys_template_path=/opt/lool/systemplate --
 
 ## 解决方案
 
-### 在 OpenShift 中启用镜像 ROOT
+### 在 OpenShift 中启用容器的 ROOT
 
 > :notebook: 备注:
 >
@@ -132,11 +133,11 @@ su -c "/usr/bin/loolwsd --version --o:sys_template_path=/opt/lool/systemplate --
 
 `oc adm policy add-scc-to-user anyuid system:serviceaccount:myproject:mysvcacct`
 
-### 在 OpenShift 中提供其他 Capabilities
+### 在 OpenShift 中为容器提供其他 Capabilities
 
 > :notebook: 备注:
 >
-> [Docker官方文档: Runtime privilege and Linux capabilities](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities)
+> 以下内容来自[Docker官方文档: Runtime privilege and Linux capabilities](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities)
 
 默认情况下，Docker容器是“无特权的”(unprivileged)，例如，不能在Docker容器内运行Docker守护进程。这是因为在默认情况下，容器不允许访问任何设备，但是一个"privileged"(“特权”)容器可以访问所有设备。
 
@@ -193,11 +194,11 @@ su -c "/usr/bin/loolwsd --version --o:sys_template_path=/opt/lool/systemplate --
 
 > :notebook: 备注:
 >
-> [OpenShift官方文档: Provide Additional Capabilities](https://docs.openshift.com/container-platform/3.9/admin_guide/manage_scc.html#provide-additional-capabilities)
+> 以下内容来自[OpenShift官方文档: Provide Additional Capabilities](https://docs.openshift.com/container-platform/3.9/admin_guide/manage_scc.html#provide-additional-capabilities)
 
 有时候, 镜像会需要Docker默认没有提供的capabilities(功能). 那么你可以在pod的描述文件 specification中请求这些额外的capabilities, 这些capabilities将根据SCC进行验证.
 
-> :heavy_exclamation_mark: 注意:
+> :exclamation: 注意:
 >
 > 这允许镜像以提权后的功能运行，**应该仅在必要时使用**。不应编辑默认的受限SCC以启用其他功能。
 
@@ -214,6 +215,8 @@ su -c "/usr/bin/loolwsd --version --o:sys_template_path=/opt/lool/systemplate --
 1. 创建一个新的SCC
 2. 使用`allowedabilities`字段添加允许的功能。
 3. 创建pod时，在`securityContext.capabilities.add`中添加请求该功能的字段。
+
+#### 为Collabora 提供需要的Capabilities
 
 针对这个Collabora镜像, 仔细分析后, 要快速解决, 其实在容器的spec中给它授予"privileged" 就可以了. **注意: 之前关于root的权限是在`deployment`下配置的. 这个是在`containers`下配置的.**
 
@@ -235,4 +238,4 @@ su -c "/usr/bin/loolwsd --version --o:sys_template_path=/opt/lool/systemplate --
 
 *最后顺便吐槽一下, SCC和linux capabilities实在是太难了, 对安全一知半解的我一脸懵逼. :joy::joy::joy:* 
 
-![](./images/too-hard.jpg)
+![太难了](./images/too-hard.jpg)
