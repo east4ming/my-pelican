@@ -32,7 +32,7 @@ Kubernetes 中的应用出了问题, 往往需要进行网络抓包分析. 本�
 >
 > **February 27, 2019**
 >
-> sidecar应用范围不仅仅止于此, 比如: APM监控的agent就可以通过这种方式来挂载. 详见我的另一篇博文: [使用 Dynatrace AppMon 监控 Docker 应用]({filename}/Observability/monitoring-docker-app-with-dynatrace.md)
+> sidecar应用范围不仅仅止于此, 比如: APM监控的agent就可以通过这种方式来挂载. 详见我的另一篇博文: [使用 Dynatrace AppMon 监控 Docker 应用]({filename}../Observability/monitoring-docker-with-dynatrace.md)
 
 在分布式计算、容器和微服务的世界中，服务之间的许多交互和通信都是通过RESTful api完成的。在开发这些api和服务之间的交互时，我经常需要调试服务之间的通信，特别是当事情看起来不像预期的那样工作时。
 
