@@ -6,7 +6,7 @@ Modified: 2019-10-03 20:00
 Author: 东风微鸣
 Slug: how-to-run-container-with-su-in-openshift
 Summary: 近期在尝试 office 文档在线编辑和预览的一些解决方案, 目前在使用Collabora Office, 但是在OpenShift中运行不起来, 快看看是怎么解决的吧.
-Image: /images/too-hard.png
+Image: /images/too-hard.jpg
 
 [TOC]
 
