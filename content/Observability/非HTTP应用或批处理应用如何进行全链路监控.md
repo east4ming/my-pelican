@@ -59,7 +59,7 @@ CPU采样可以分析当前运行的的Java或 .NET程序的线程堆栈, 并找
 
 1. 点击Dynatrace上的**CPU 采样仪表图**. 如下:
 
-    ![CPU 采样仪表图](dt_cpu_sampling_dashlet_1.png)
+    ![CPU 采样仪表图](images/dt_cpu_sampling_dashlet_1.png)
 
 2. 然后选择你要监控的应用Agent, 点击确定进行采样. 大约2分钟后停止采样. 
 
