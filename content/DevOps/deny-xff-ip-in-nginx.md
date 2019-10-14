@@ -21,7 +21,7 @@ Image: /images/nginx-logo.png
 
 > :notebook: 备注:
 >
-> 关于`deny`指令的使用, 请参见我的另一篇文章: [NGINX 实战手册-安全-访问控制]({filename}DevOps/nginx-handbook-2-1-control-access.md)
+> 关于`deny`指令的使用, 请参见我的另一篇文章: [NGINX 实战手册-安全-访问控制]({filename}/DevOps/nginx-handbook-2-1-control-access.md)
 
 最简单的实现如下:
 
