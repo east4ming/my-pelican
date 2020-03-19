@@ -6,8 +6,9 @@ from datetime import datetime
 
 import logging
 
-AUTHOR = '东风微鸣'
-SITENAME = AUTHOR + " Blog"
+AUTHOR = '个人技术分享'
+#SITENAME = AUTHOR + " Blog"
+SITENAME= '个人技术分享'
 SITETITLE = AUTHOR
 SITESUBTITLE = "Focus on Python/Java/DevOps/Observability"
 SITEURL = ''
@@ -27,7 +28,7 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-    ('沪ICP备19007314号-1', 'http://www.miitbeian.gov.cn/'),
+    ('沪ICP备19007314号-1', 'http://beian.miit.gov.cn'),
 )
 
 # Social widget
@@ -138,6 +139,7 @@ CC_LICENSE = {
     'version': '4.0',
     'slug': 'by-sa'
 }
+
 COPYRIGHT_YEAR = datetime.now().year
 
 PLUGIN_PATHS = ['pelican-plugins']
